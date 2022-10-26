@@ -8,27 +8,27 @@ const FeatureList = [
     Svg: require('@site/static/img/githublogo.svg').default,
     description: (
       <>
-        You can visit my GitHub profile for my personal projects
+        Visit my <a href="https://gitthub.com/furkantaskin">GitHub profile</a> for personal projects
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Who am I',
+    Svg: require('@site/static/img/python-img.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+      Pythonista <br/>
+      Loves Blender, Photoshop and GNU/Linux
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Contact Me',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+      Email: furkan.taskin[at]tuta.io <br/>
+      LinkedIn: <a href='https://linkedin.com/in/furkant1'>furkant1</a>
       </>
     ),
   },
