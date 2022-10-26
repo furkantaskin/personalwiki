@@ -1,41 +1,21 @@
-# Website
+# Personal Wiki
+[![Docusaurus](https://img.shields.io/badge/Docusaurus-2.0.0-green)](https://github.com/facebook/docusaurus)
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-### Installation
+Bu siteyi açmamdaki amaç, lokal ortamın hızı ve internet ortamının paylaşım gücünü birleştirerek kişisel notlarımı en yüksek verimde tutmaktı. Yeri gelince de bunu paylaşarak öğrenci ya da bir şeyler öğrenmek isteyen arkadaşlara bu fırsatı sunmaktı. Notları kendi anlayabileceğim tonda tuttuğum için karışıklıklar ya da yazım hataları olabilir. Her türlü fikir ve görüşe açığım.
 
-```
-$ yarn
-```
 
-### Local Development
+## Eklenecekler Listesi
 
-```
-$ yarn start
-```
+Şu an için site Django ağırlıklı ilerliyor. Ancak buraya zamanla Python üzerine bilgilerimi ekleyeceğim. Amacım sadece Python ile kısıtlı kalmamak. Gerekirse kendi Bloglarımı da burada tutabilirim. Aklımdaki liste şu şekilde: 
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+- [ ] Django
+- [ ] Python
+- [ ] Go
+- [ ] Rust
+- [ ] JS
+- [ ] WebAssembly
+- [ ] C++
+- [ ] Frontend Performance
 
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Bu notlar tamamlandıkça sisteme ekleyeceğim.
