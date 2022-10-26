@@ -4,6 +4,26 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+async function createConfig() {
+  const mdxMermaid = await import('mdx-mermaid')
+
+  return {
+    presets: [
+      [
+        'classic',
+        {
+          docs: {
+            remarkPlugins: [mdxMermaid.default],
+          }
+        }
+      ]
+    ]
+  }
+}
+
+module.exports = createConfig;
+
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Furkan Taşkın',
@@ -120,6 +140,21 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ['powershell', 'rust', 'apacheconf', 'nginx', 'django'],
+        magicComments: [
+          {
+            className: 'theme-code-block-highlighted-line',
+            line: 'This line active',
+            block: { start: 'highlight-start', end: 'highlight-end' },
+          },
+          {
+            className: 'code-block-error-line',
+            
+            line: 'This will error',
+            block: { start: 'error started', end: 'error ended' },
+          },
+        ],
+
       },
     }),
 };
