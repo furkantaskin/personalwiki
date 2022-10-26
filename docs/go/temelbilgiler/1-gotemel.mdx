@@ -1,0 +1,94 @@
+---
+sidebar_position: 1
+custom_edit_url: null
+description: "Go'nun Temel Kavramları"
+---
+
+# Temel Kavramlar
+
+Go içindeki temel kavramları anlayarak, dile daha yakından bakabiliriz. Örneğin değişkenler ve temel operatörler bu kısımda bize yardımcı olacaktır.
+
+## Değişkenler
+
+Go, bize değişken kısmında aslında dinamik ve statik değişkenler sunmaktadır. Değişkenleri anlamak için önce temel veri tiplerine bakalım:
+
+- bool
+- string
+- integer
+  - int
+  - int8: 8 bit integerdır. -128 ile 127 arasında değer alır
+  - in16: 16 bit integerdır. -32768 ile 32767 arasında değer alır
+  - int32: 32 bit integerdır. -2147483648 ile 2147483648 arasında değer alır
+  - int64: 64 bit integerdır -2<sup>63</sup> ile 2<sup>63</sup> - 1 arasında değer alır 
+  - uint: normal integer değerin negatif olmadan sadece pozitif hallerini tutar
+  - uint8
+  - uint16
+  - uint32
+  - uint64
+  - uintptr: bir hafıza adresinin integer olarak temsilidir
+- byte: uint8 ile aynı değerdir
+- rune: int32 ile aynı değerdir
+- float
+  - float32
+  - float64
+- complex
+  - complex64
+  - complex128
+
+`int`, `uint`, `uintptr` değerleri sistemin 32 ya da 664 bit olmasına göre 32 veya 64 bitlik değer alır.
+
+Temel olarak değişken atarken `var` veya `const` anahtar kelimelerini kullanırız. Örneğin temel tanımlamalar şu şekilde yapılabilir.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var a = "Initial"
+	var b, c = 1, 2
+	fmt.Println(a)
+	fmt.Println(b, c)
+
+	var d = true
+	var e int
+	fmt.Println(d)
+	fmt.Println(e)
+
+	f := "apple"
+	fmt.Println(f)
+}
+```
+
+Burada aslında JS'ye benzer bir tanımlama görüyoruz. `var` anahtar kelimesi değersiz değişken tanımlamalarında önemli bir rol oynamaktadır.
+
+Burada ilgiyi çeken ifadelerden birisi de `:=` ifadesidir. Bu ifade değişkenin oluşturulup bir değere atanmasını sağlar. Kod içerisinde normalde `var f = "apple"` demek yerine direkt olarak f değerinin bir string değere eşit olduğunu belirttik. Ya da daha uzun bir şekilde `var foo int = 10` yerine `foo := 10` diyebiliriz. Go hem statik hem de dinamik programlamayı desteklediği için değişken türünü kendisi belirleyebilmektedir.
+
+Bir diğer değişken tanımlama türü ise `const` ifadesidir. `const` ifadesi değişkenin değerinin değiştirilmesini önlerken global olarak tanımlanabilmesini sağlamaktadır. Ancak `const` değişkenler hiçbir şekilde `:=` ifadesi ile (bundan sonra SVD, yani short variable declaration olarak da anılabilir) tanımlanamaz.
+
+Eğer değişkene net olarak bir tip atamazsak değişkenin durumuna göre bu `int`, `float64` veya `complex128` tipinde olacaktır. 
+
+## Tip Dönüşümleri
+
+Değişkenlerde genel olarak `T(v)` yapısı ile (T = dönüştürülecek tip ve v = değişken) değişken dönüşümü yapabiliriz. Örnek olarak `int32` olarak tanımlanan b değişkenini `float32` yapmak istiyorsak yapmamız gereken işlem çok basittir.
+
+```go
+package main 
+
+import "fmt"
+
+func main(){
+  var x int32 = 101
+  var f float32 = float32(x)
+  fmt.Printf("f değişkeninin değeri: %T", f)
+}
+```
+
+:::tip 
+
+Buradaki `fmt.Printf()` ifadesi, formatlı bir çıktı vermek için kullanılmaktadır.
+
+:::
+
+
+

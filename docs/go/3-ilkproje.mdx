@@ -1,0 +1,198 @@
+---
+sidebar_position: 3
+custom_edit_url: null
+description: "Go ile İlk Proje"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Go ile İlk Proje
+
+Öncelikle ilk proje için init işlemi gerekiyor.
+
+```shell 
+go mod init example/hello
+```
+
+Bu koddan sonra bir go.mod dosyasının klasöre eklenmesi gerekiyor. Sırada sisteme hello.go isimli bir dosya oluşturması kaldı. Dosyayı oluşturduğumuzda bu kısımda VSCode kullanıyorsak IntelliSense çalışmayabilir. Bunu etkinleştirmek için workspace veya user için settings.json içine şu satırı eklemeniz yeterli:
+
+```json
+"go.useLanguageServer": true
+```
+
+Artık yapacağımız şeyler temel işlemler. Basitçe bir hello world uygulaması yapıyoruz.
+
+
+<Tabs>
+  <TabItem value="go" label="main.go" default>
+
+```go showLineNumbers
+  package main
+
+  import "fmt"
+
+  func main(){
+    fmt.Println("Hello World")
+  }
+```
+  </TabItem>
+  <TabItem value="cpp" label="main.cpp">
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main(){
+  cout << "Hello World";
+
+  return 0;
+}
+```
+  </TabItem>
+</Tabs>
+
+:::tip 
+
+Aslında farkındaysak C ailesine benzer bir yapısı var. Ancak yazımı bir tık daha rahat. Python ile C arası bir yapı görüyoruz.
+
+:::
+
+Bundan sonra yapacağımız şey `go run .` komutu ile ekrana Hello world çıktısının gelmesini beklemek olacak.
+
+## Harici Modül Kullanmak
+
+Dilersek burada harici modüller ile de işlem yapabiliriz. Go kendi içindeki modülleri remote sunucu üzerinden çekmeyi de sağlamaktadır. Bunun için [pkg.go.dev](https://pkg.go.dev) üzerinden modülleri inceleyebiliriz. Mesela ekrana günün sözü gibi çıktı verelim. Bunun için quote modülünü kullanacağız. Öncelikle bunu dördüncü satıra (import "fmt" ibaresinden sonra) ekliyoruz. Ancak burada modülü indirmemiz gerekecek. Bunun için terminale gidip `go mod tidy` komutunu çalıştırmamız yeterli olacaktır.
+
+Artık yeni kodumuz şu şekilde.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"rsc.io/quote"
+)
+
+func main() {
+  // This will active
+	fmt.Println(quote.Go())
+}
+```
+
+`quote` modülün de çağırdıktan sonra yeniden çalıştıracağız. 
+
+:::tip
+
+Dilersek [modülün sitesinden](https://pkg.go.dev/rsc.io/quote/v4) diğer kullanım örneklerine bakabiliriz.
+
+:::
+
+
+Artık çıktımız değişecektir.
+
+
+:::info 
+
+Burada ben [roadmap.sh](https://roadmap.sh) adresindeki haritayla birlikte kendi sitelerindeki haritayı kullanacağım. Burası tamamen size kalmış
+
+:::
+
+
+## Kendi Modülümüzü Yazmak
+Bu kısımda kendi modülümüzü oluşturmayı öğreniyoruz. Modüller, ilişkili yapılar ve fonksiyonların birarada bulunmasını sağlayan paketler olurken diğer projelerde ya da uygulamalarda kullanırken önemli bir eleman olmaktadır. 
+
+### Modül oluşturma
+
+(Buradaki örnek [Tutorial](https://go.dev/doc/tutorial/create-module) bölümünden alınmıştır. Başta bu kısmı takip edeceğim.)
+
+Örnek modül olarak kullanıcının adını input olarak alan ve bunu ekrana yazan bir modül oluşturacağız. Öncelikle ister yeni proje initleyin isterseniz devam edin. Ben yeni projeyi tercih ediyorum.
+
+Burada yeni proje açıp ya da önceki projeyi temizledikten sonra bir tane greetings isimli klasör oluşturalım. Sonrasında greetings içine girip `go mod init example/greetings` komutu ile mod dosyamızı açalım. Ardından go uzantılı dosya oluşturup şu şekilde düzenleyeceğiz.
+
+```go
+package greetings
+
+import "fmt"
+
+func Hello(name string) string {
+	message := fmt.Sprintf("Hi %v. Welcome!", name)
+	return message
+}
+```
+
+Peki bu kodda neler yaptık?
+- Öncelikle bir paket tanımladık ve adını greetings yaptık. Buradaki amaç bu paket içinde birbiriyle ilişkili fonksiyonları toplamak. Böylece projede kontrolü sağlamak.
+- Hello isimli fonksiyon eklemek ve bu fonksiyona name parametresi vermek.
+  - Bu kısımda fonksiyon içindeki değişken name adını alırken fonksiyona bir string döndüreceğini ve name değişkeninin de bir string olacağını söyledik. Buradaki verilerimi kullanabilmemiz için büyük harfle başlamamız gerekir. Çünkü Go, export edilecek ismin büyük harfle başlamasını beklemektedir. Örneğin `math.pi` kullanımı hata verirken `math.Pi` sorunsuz çalışacaktır.
+- `:=` operatörü ile değişkenimizi tanımlayıp değer atadık. Örnek olarak `var foo int = 10` ile `foo := 10` aynı mantığa gelmektedir. Ayrıca `:=` operatörü fonksiyon dışında kullanılamaz. Buradaki message tanımlamasını dilersek şöyle de yapabilirdik:
+
+```go
+var message string
+message = fmt.Sprintf("Hi %v. Welcome!", name)
+```
+
+Buradaki `Sprintf` bizim Python içindeki string formatlama ile benzer yapıdadır. 
+
+| Specifier | Description |
+| :---: | :---: |
+| `%s` | String bastırmak için |
+| `%d` | Integer bastırmak için |
+| `%v` | Bir yapı içindeki tüm elemanların değerlerini bastırmak için |
+| `+%v` |Bir yapı içindeki tüm elemanların isimleri ve değerlerini bastırmak için | 
+
+
+### Başka Bir Modülden Çağırma
+
+Burada bir önemli kısım var. Go genellikle import kısmında bizden bir uzak paket bekleyeceği için düzenlemeler yapmamız gerekecek. Yani lokal dosyayı burada tanıtmamız gerekecek. Öncelikle bir hello isimli klasörü greetings'in yanına açalım. Yani yeni klasör yapımız:
+- ana klasörümüz
+  - greetings
+  - hello
+  
+  şeklinde olacak. Ardından hello klasörü içine bir `go mod init example/hello ` ile mod dosyası açalım. Ardındand hello.go isimli dosya oluşturup greetings içinden gelen fonksiyonu burada kullanalım.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"furkantaskin/greetings"
+)
+
+func main() {
+	message := greetings.Hello("Furkan")
+	fmt.Println(message)
+}
+```
+
+:::warning ÖNEMLİ
+
+Burada uygulamamızın giriş yapacağı dosyasda package kısmının main olması gerekmektedir.
+
+:::
+
+Ancak çalıştırdığımızda hata görmemiz yüksek. Çünkü greetings'i nerede arayacağını sistem bilmiyor. Burada çeşitli düzenlemeler yapacağız. Öncelikle terminalden klasörümüze gidip aranan paketin lokalden geldiğini belirtmeliyiz. 
+
+Bunun sebebi go, kullanıma alınan uygulamalarda belirli bir repodan paketin çekileceğini varsayarak bu paketi repolarda arar. Ancak biz repo yerine yerel sistemden modülleri çağırdığımız için sistem bunu bilmemektedir.
+
+```shell
+go mod edit --replace furkantaskin/greetings=../greetings
+```
+
+:::danger DİKKAT
+
+Ben modülümü furkantaskin olarak açtığım için siz de buradaki adınızı baz alıp kodlarda değişikliğinizi yapın.
+
+:::
+
+Ardından modülümüzü çağıracağız 
+
+```shell
+go get furkantaskin/greetings
+go mod tidy
+```
+
+Artık hello.go dosyasını çalıştırdığımızda gönderdiğimiz inputa göre greetings içindeki dosyayı çalıştıracaktır. Yani çıktıımız üstteki koda göre "Hi Furkan. Welcome!" olacaktır.
+

@@ -140,7 +140,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['powershell', 'rust', 'apacheconf', 'nginx', 'django'],
+        additionalLanguages: ['powershell', 'rust', 'apacheconf', 'nginx', 'django', 'python'],
         magicComments: [
           {
             className: 'theme-code-block-highlighted-line',
@@ -149,7 +149,7 @@ const config = {
           },
           {
             className: 'code-block-error-line',
-            
+
             line: 'This will error',
             block: { start: 'error started', end: 'error ended' },
           },

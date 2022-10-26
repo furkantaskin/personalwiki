@@ -1,0 +1,131 @@
+---
+sidebar_position: 2
+custom_edit_url: null
+description: "Go içerisinde döngüler ve yapıları"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Döngüler
+
+Go içinde de diğer dillerdeki gibi for döngüsü bulunmaktadır. Ancak Go dilinde while döngüsü mevcut değildir. Döngüler `for` ile kontrol edilmektedir. For döngüsünün çalışma mantığının ise ufak detaylar dışında hiçbir farkı yoktur. 
+
+Şu şekilde diğer dillerden örnek vererek gelebiliriz.
+
+
+<Tabs>
+  <TabItem value="go" label="Go" default>
+
+```go 
+package main
+
+import "fmt"
+
+func main(){
+  for j := 1; j < 5; j++{
+    fmt.Println(j)
+  }
+}
+```
+</TabItem>
+<TabItem value="cpp" label="C++">
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main(){
+for(int j = 1; j < 5; j++){
+  cout << j << endl;
+}
+
+return 0;
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```py
+for i in range(0,5):
+  print(i)
+```
+
+</TabItem>
+</Tabs>
+
+Özellikle C ailesine benzer bir yapısı olduğunu gördük. Ayrıca hızlı değişken tanımlama operatörünü de içeride kullanabiliyoruz. Dilersek herhangi bir sayaç kullanmadan direkt olarak `for` bloğu kullanarak sonsuz döngüye de alabiliriz. Örnek vermek gerekirse 
+
+```go
+package main
+
+import "fmt"
+
+func main(){
+
+  for j := 1; j < 5; j++{
+    fmt.Println(j)
+  }
+
+  for{
+    fmt.Println("Loop")
+    break
+  }
+}
+```
+
+
+Burada for döngüsünde C ailesindeki gibi döngü parametresini parantez içine almaya gerek yoktur. Ancak döngü bloğu için süslü parantez olmak zorundadır.
+
+Yine python ve C++ içindeki break ile continue mekanizmaları burada da vardır.
+
+Ayrıca Go içinde Python'daki blank identifier da mevcuttur. Şöyle hatırlatmak gerekirse alt çizgi (_) ile tanımlanan ifadeler blank identifier olark geçmektedir. Bunların amacı döngülerde ya da kullanıldıkları sayaç sistemlerinde sadece ama sadece adımı ilerletmek için kullanılmaktadır ve döngü içinde değer almamaktadır. Yani döngü içinde sayaca bağlı bir işlem yapılmıyorsa (ekrana yazdırmak gibi) bu durumda rahat bir şekilde kullanılabilir. Bunu dizilerde sıkça göreceğiz. Örneğin string içindeki gezinme mantığı şu şekildedir
+
+<Tabs>
+  <TabItem value="string" label="Çift Değişkenli" default>
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var myname string = "furkan"
+
+	for pos, char := range myname {
+		fmt.Printf("%c , %d\n", char, pos)
+	}
+}
+```
+
+  </TabItem>
+  <TabItem value="nonstring" label="Tek Değişkenli">
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var myname string = "furkan"
+
+	for pos := range myname {
+		fmt.Printf("%d", pos)
+	}
+}
+```
+
+  </TabItem>
+</Tabs>
+
+
+:::info 
+
+Burada `pos` değeri içeride stringin kaçıncı indeksi olduğunu tutarken `char` ifadesi o indeksteki değeri tutmaktadır. `range` ifadesi string içindeki gezinmede gereklidir.
+:::
+
+Yukarıdaki kod bloklarında tek değişkenli sistemde çıktı "012345" şeklinde olurken çift değişkenlide "f,0 u,1 r,2 ..." şeklinde bir çıktı gelecektir.

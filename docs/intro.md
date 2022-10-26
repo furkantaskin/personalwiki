@@ -1,47 +1,43 @@
 ---
 sidebar_position: 1
+custom_edit_url: null
 ---
 
-# Tutorial Intro
+# Giriş 
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Merhabalar değerli okuyucum,
 
-## Getting Started
+Okuyan kişi ben de olsam fark etmez. Buraya toplanma sebebimiz benim öğrendiğim ve öğreneceğim her şeyin notunu internette güzel bir dokümantasyon ve eklenti yapısı sunan bir sistemle kolayca not almak ve bu sırada herhangi bir performance bottleneck sorunu ile karşılaşmamaktı. Baktım işler iyi gidiyor Django da hoş, neden diğer konuları da buraya not almayım dedim. Artık kendi notlarımı da buraya alıp ileride bunu güzel bir forma çevirip bir şeyler öğrenmek isteyen ve "Abi tam anlamadım şimdi bu niye böyle?" diye soran meraklı Melahatler için hoş bir dokümantasyon sunacağım. Buraya eklenecekler arasında Rust, Ruby, Go, WebAssembly ve yerine göre React gibi şeyler de var. Python'ı yazmaya gerek yok çünkü onu da ekleyeceğim. Hatta bunun bir listesini oluşturabiliriz.
 
-Get started by **creating a new site**.
+## Neler Var
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Şu an için yeni yeni başlıyorum var. Eksiği çok ama ileride daha güzel olacak. Çünkü not almayı seviyorum. 
 
-### What you'll need
+## Neler Yok
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+Tonlarca şey yok ama sorun değil. Eklemeyeceğiz diye bir kaide yok. Bunu tüm arkadaşlarımla da paylaşabilirim zamanla. Docusaurus bu konuda benim gerçekten birçok sorunumu giderdi. Sen cansın Docusaurus.
 
-## Generate a new site
+## Neler Düşünüyorum 
 
-Generate a new Docusaurus site using the **classic template**.
+Aslında burası güzel bir platform ve kullanabilirim ancak kendi kişisel portfolyomu da hesaba katarsak buraya tüm bildiklerimi dökemem. Bir miktar da prim yapacak bir platform gerekeceği için kendi kişisel sitemi açana kadar bildiğim öğrendiğim şeyleri veya kişisel yazılarımı (örneğin MDX nedir veya yeni keşfettiğim kütüphane neler yapıyor gibi) buraya ekleyeceğim. O süreye kadar burası büyük bir kolaylık sağlayacaktır. Yeri geldiğinde hangi kaynakları kullandığımı veya nereyi referans aldığımı da belirteceğim (örneğin yol haritamı [roadmap.sh](https://roadmap.sh) üzerinden ilerletiyorum gibi). Bunun için şöyle bir blok görürseniz kaçırmayın
 
-The classic template will automatically be added to your project after you run the command:
+:::tip Kaynak
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+Bu konuyu [roadmap.sh](https://roadmap.sh) sitesindeki haritadan baz aldım
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+:::
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+Planımdaki liste şu şekilde
 
-## Start your site
+- [x] Python[^1]
+- [x] Go[^1]
+- [ ] Ruby
+- [ ] Rust[^2]
+- [ ] JS[^2]
+- [ ] WebAssembly[^2]
+- [ ] C++[^2]
+- [ ] Frontend Performance
 
-Run the development server:
+[^1]: Henüz tamamlanmadı
 
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+[^2]: Kesin Değil
