@@ -1,7 +1,7 @@
 import React from 'react'
 import myAvatar from '@site/static/img/me.png'
 
-function Personal() {
+export default function Personal() {
   <div style={{ textAlign: "center" }}>
     <img src={myAvatar} style={{
       width: "400px",
