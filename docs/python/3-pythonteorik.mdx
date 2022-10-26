@@ -1,0 +1,114 @@
+---
+sidebar_position: 3
+custom_edit_url: null
+description: "Teorik olarak Python"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Python'ı Tanıyalım
+
+Python'ı teorik olarak tanımak aslında bizi Python'ın yeteneklerini ve aynı zamanda da limitlerini gösterecektir.
+
+## Python Nedir? 
+Python, yorumlanabilir, dinamik tipli, genel amaçlı bir programlama dilidir. Genel amaçlı burada büyük bir önem arz etmektedir çünkü Python finanstan yapay zekaya, web uygulamalarından gömülü sistemlere kadar birçok yerde kullanılmaktadır. Başlıca kullanım alanları şöyledir:
+
+- Veri analizi ve makine öğrenme
+- Web geliştirme
+- Otomasyon ve arka plan servisleri
+- Yazılım testleri
+- Gündelik işlemler
+- Gömülü sistemler
+
+
+Python genel amaçları sayesinde devasa bir kitle ve geliştirici popülasyonu elde etti. Özellikle yazım ve öğrenim kolaylığı da Python'ın kitlesinin artışında büyük bir rol oynadı. Bu sebepleri düşündüğümüz zaman Python'ın uzun yıllar boyunca en çok kullanılan programlama dili olması da kaçınılmaz oldu. Öyle ki Python birçok programlama diline de esin kaynağı oldu. Örnek olarak
+
+- [Boo](https://boo-language.github.io/) dili, indentation yapısını Python'dan esinlendi
+- JavaScript, generator kavramını Python'dan esinlendi
+- Günümüzde büyük bir popülariteye sahip Go dili, C++'ın derlenebilir yapısı ile Python'ın hızını baz almamaktadır
+- Apple ekosistemindeki cihazlar (iPhone, iPad, Mac ailesi, Apple TV) için büyük önem arz eden Swift dili, Python'a benzer syntax yapısı kullanmaktadır.
+
+
+Python içerisinde değişkenlerin tipi ilk aşamada tanımlanmaz. Bunu sistem çalıştırma zamanında gelen veriye göre değerlendirir. Python bir yorumlayıcı üzerinde çalışır. Bu yüzden kodumuz içindeki tüm hataları tek seferde göremeyiz. Örneğin 
+
+```py
+# This will error
+print("Hello World)
+# This will error
+printf("Şaka mı yapıyorsun")
+```
+
+Normalde üstteki kodda iki satırda da hata var. Ancak bu hatayı biz satırları düzelterek gelince görebiliriz.
+
+
+Buna ek olarak Python içerisinde C ailesinden aşina olduğumuz süslü parantezler ve noktalı virgülleri görmeyiz. Python bu kısımda işlemleri birbirinden ayırmak için yeni satır veya girinti (indentation) yapısını kullanır. Örneğe bakmak gerekirse 
+
+
+
+<Tabs>
+  <TabItem value="py" label="Python" default>
+
+```python
+print("Hello World")
+print("Bir diğer hello world")
+
+if 3 < 5:
+  print("Üç sayısı beşten küçüktür")
+```
+
+  </TabItem>
+  <TabItem value="cpp" label="C++">
+
+```cpp
+#include <iostream>
+
+int main(){
+  std::cout << "Hello World" << std::endl;
+  std::cout << "Bir dieğr hello world" << std::endl;
+
+  if(3 < 5){
+    std::cout << "Üç sayısı beşten küçüktür" << std::endl;
+  }
+
+  return 0;
+}
+```
+  </TabItem>
+</Tabs>
+
+Normalde C++ içersinde koşula bağlı işlemler için süslü parantez gerekmektedir. Python'da bunun için girinti kullanmamız yeterlidir. Ayrıca her bir işlemi yeni satırda yazmamız yeterlidir.
+
+
+## Python'ın Tarihçesi
+
+Python'ın kurucusu Guido Van Rossum, Python'ı geliştirirken hangi prensipleri baz aldığını ve serüvenini [kendi sitesinde anlattı](http://python-history.blogspot.com/2009/01/pythons-design-philosophy.html). Bu dili geliştirirken bazı kurallara dayanarak ilerledi.
+
+1980 yılında temeli atılan Python'ın serüveni şu şekilde ilerledi: 
+
+Hollanda'da CWI'da (National Research Institute for Mathematics and Computer Science | Matematik ve Bilgisayar Bilimleri Ulusal Araştırma Enstitüsü) halihazırda bulunana ABC programlama dili üzerine çalışmalarda bulunan Rossum, enstitü tarafından piyasaya sürülmek istenen Amoeba işletim sistemi üzerinde çalışıyordu. Bu sistem tek bir bilgisayar yerine birden fazla bilgisayarı tek bir cihaz gibi sunma imkanı sağlamak amacıyla üretilmişti. Ancak bu kısımda böyle bir sistemi kolayca kontrol edebilecek bir dil henüz yoktu. O dönemlerde C dili aktif olsa da böyle bir sistem için C dilinde uygulamalar yazmak ciddi zaman kaybına sebep olacaktı. Rossum bu sorun üzerine Python dili üzerine çalışmaya başladı. Normalde çalışmasına 80'li yıllarda başladığı Python'ı 91 yılında internet ortamında duyurdu. Sonrasında Python günden güne geniş kitlelerek kazanarak günümüze ulaştı.
+
+
+## Python Prensipleri
+
+Python burada 19 temel prensibe dayanarak geliştirildi. Bunlardan birkaçı
+
+- Güzel, çirkinden daha iyidir
+- Belirgin olmak, üstü kapalı olmaktan daha iyidir
+- Basit, karmaşıktan daha iyidir
+- Okunabilirlik önem arz etmektedir
+
+:::info
+
+Geri kalan maddelere [PEP](https://peps.python.org/pep-0020/) üzerinden ulaşabilirsiniz.
+
+:::
+
+## Python'ın Eksi Yönleri
+
+- Python yorumlanabilir bir dil olduğu için karşılaşacağı ilk hatada programı durduracaktır. Sonraki aşamalarda eğer hatamız varsa bunu tespit etmek zorlaşacaktır.
+- Python kodu adım adım ilerlettiği için C ailesi veya Java gibi yüksek performans sunamaz. Rakiplerine nazaran yavaş kalacaktır
+- Veri tiplerinin esnekliğinden ötürü Python dilinin hafıza tüketimi fazladır
+- Python belirli hataları sadece çalıştırırken gösterir. Bu yüzden kodun ciddi testlerden geçmesi gerekir
+- Python dilinin çok kolay öğrenebilir olması, ileri dönemlerde C veya Java gibi dil öğrenmek isteyenlerde yavaşlıkların yaşanmasına sebep olabilir. 
+

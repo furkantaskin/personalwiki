@@ -1,0 +1,192 @@
+---
+sidebar_position: 4
+custom_edit_url: null
+description: "Temel Veri Tipleri ve Python'a Giriş"
+---
+# Temel Veri Tipleri ve Python'ın Temelleri
+
+## Temel Veri Tipleri
+
+Python içerisinde sayısından dizisine çok sayıda veri tipi bulunur. Şimdilik temel olanları bilmekte fayda var.
+
+Python temelde integer, string, float, bool veri tiplerini barındırır. Bunları şu şekilde açıklayabiliriz
+
+- **Integer**: Aslında bildiğimiz tam sayılardır. (1,2,-5, 123, 51231, -1511 gibi)
+- **Float**: Ondalıklı sayıları ifade eder (1.2, 4.5, -5.1, 100.2 gibi)
+- **Bool**: Doğru veya yanlış olarak sadece iki tür tutar. Python karşılığı `True` ve `False` şeklindedir
+- **String**: Günümüzde metin olabilecek her şey stringdir. ("furkan", "deneme", "312", "123.4")
+
+Buradaki değişkenlerimizin tipini `type()` ile kontrol edebiliriz. 
+
+## Değişkenler
+
+Değişkenler, veri değerlerini tutan yapılar olarak kısa bir şekilde tanımlanabilir.
+
+
+### Değişken Atama
+
+Python içerisinde temel olarak değişken tanımlamaları değişkenin adı ve alacağı değer şeklindedir. Örneğin `a` isimli bir değişkeni 10 değerine şu şekilde eşitleriz
+
+```py
+a = 10
+b = 3.14
+c = "merhaba"
+d = True
+```
+
+Dilersek bu değişkenlerin değerlerini de dilediğimiz formata güncelleyebiliriz. Çünkü Python verilerin tiplerini eğer bir kısıtlama yoksa gelen değerlere göre güncelleyecektir.
+
+```py
+a = 10
+type(a) # Bize int çıktısı verecektir
+
+a = "merhaba"
+type(a) # Artık str çıktısı gelecektir
+```
+
+:::danger DİKKAT
+
+Değişken oluştururken dikkat edilmesi gereken kurallar vardır.
+
+- Değişken ismi bir harf veya alt çizgi(_) ile başlamak zorundadır. Değişkenler sayı ile başlayamaz. Örneğin `2degisken` ifadesi geçerli değildir. `_degisken`, `Degisken`, `dEGISKEN` veya `degisken1ifade` gibi ifadeler geçerlidir.
+- Değişkenler içinde harf, sayı ve alt çizgi(_) bulunabilir. Diğer ifadeler (*, +, / gibi) ifadeler bulunamaz.
+- Python içindeki gömülü kelimeler (bunlara keyword diyoruz) değişken ismi olarak kullanılamaz.
+- Değişkenler büyük-küçük harfe duyarlıdır. Yani `degisken` ile `Degisken` ve `DEGISKEN` üç farklı değişkendir. 
+
+:::
+
+<details>
+  <summary>Gömülü kelimeler</summary>
+  <div>
+    Python içerisinde gömülü kelimeler (keywordler) şöyledir: <br/>
+    and, as, assert, break, class, continue, def, del, elif, else, except, False, finally, for, from, global, if, in, is, lambda, None, nonlocal, not, or, pass, raise, return, True, try, while, with, yield
+  </div>
+</details>
+
+### Değişken Türü Değiştirme
+
+Dilersek python içinde değişkenimizin tipini değiştirebiliriz. Bunu `degisecektip(degisken)` şeklinde yaparız. Yani
+
+```py
+a = int(10)
+b = str(10)
+c = float(10)
+```
+
+Burada a değeri 10 olarak çıkarken b değeri "10" ve c değeri 10.0 olarak çıkacaktır.
+
+:::tip İPUCU
+
+Burada string taımlaması yaparken tek tırnak(') veya çift tırnak(") kullanılabilir. Yani 
+
+```py
+a = "10"
+b = '11'
+```
+
+şekinde dilersek tek tırnak dilersek çift tırnak kullanabiliriz.
+
+:::
+
+Bu kısımda [PEP 8'i](https://peps.python.org/pep-0008/) takip etmek uygun olacaktır. 
+
+
+### Birden Fazla Değişkene Değer Atama
+
+Dilersek Python üzerinde üç değişkeni alt alta yazmak yerine tek seferde birden fazla değişkene değer atayabiliriz. Örnek olarak a,b ve c değişkenlerine tek seferde değer atamaası yapmak için
+
+```py
+a, b, c, d = 1, "merhaba", 3.14, True
+```
+
+yapabiliriz. Ya da işi biraz daha ileri götürüp tek bir değeri birden fazla değişkene de atayabiliriz.
+
+```py
+x = y = z = "Merhaba"
+```
+
+
+### Değişken Değerlerini Takas Etme 
+
+Örneğin elimizde a,b ve şeklinde iki değişken olsun. Biz bunlar arasındaki değerleri birbiri ile değiştirmek istediğimizde bunu yapmak sadece tek satırımızı alır.
+
+```py
+a = 10
+b = 3
+
+a,b = b,a
+```
+
+Artık a değeri 3 ve b değeri 10 oldu. 
+
+Peki bu sayı fazla olursa ne olacak? Değişen hiçbir şey yok 
+
+```py
+x = 1
+y = 2 
+z = 3
+t = 4
+
+x,z,t,y = t,y,x,z
+
+print(x,y,z,t) # 4,3,2,1
+```
+
+Adım adım inceleyelim
+
+- x değeri artık t değerini alır. Yani 4 olur
+- z değeri artık y değerini alır. Yani 2 olur
+- t değeri artık x değerini alır. Yani 1 olur
+  - Burada x değerini alır derken x'in yeni değeri olan 4'ü değil, eski değeri olan 1'i kast etmekteyiz.
+- y değeri artık z değerini alır. Yani 3 olur.
+  - t değerinde olan durumun aynısı burada da geçerlidir. Yani sistem eski değeri atar.
+
+
+### Underscore Placeholder (Geçici Değişken)
+
+Geçici değişken, birçok temel kısımlarda belli olmasa da Python serüveninde birçok noktada bize fayda sağlamaktadır. Geçici değişken (_) aslında sistemde kullanılan son değişkenin değerini kendi içinde tutmaktadır. Örneğin 
+
+```py
+a = 3
+b = _ 
+
+4 + 6
+
+c = _
+```
+
+Burada b değeri 3 olurken c değeri 10 olarak dönecektir. Bunu ileride özellikle döngülerde sıkça göreceğiz. Şimdilik fikir sahibi olmamız yeterlidir.
+
+
+## Python'da Yorum satırı
+
+Python tek ve çok satırlı yorumları desteklemektedir. Python'ın [**yazım kuralları**](https://peps.python.org/pep-0008/#comments) arasında yorumlara da büyük önem verilmektedir. Burada yorumlar, yazdığımız kodların ne amaçla yazıldığını diğer kişilerin de anlamasını sağlayacaktır. Python içerisinde yorum eklemek için '#' ifadesi kullanılır.
+
+```py
+# a değerine değer ataması yapılır
+a = 10
+
+# b değerine değer ataması yapılır.
+# Sonrasında b değeri güncellenir
+b = "selam"
+b = "merhaba"
+```
+
+Eğer bir uygulamayı ya da kod yapısını uzun uzun açıklamak gerekiyorsa **docstring** dediğimiz bir yapı kullanılır. Docstring'in amacı Python içerisinde bir sınıf, metod, fonksiyon veya modülün gayesi ile kullanımını açıklamak için vardır. 
+
+Aşağıdaki örneği inceleyelim
+
+```py
+'''Yepyeni bir kod açıklaması
+
+Buraya yazdığımız koddaki asıl amaç a değerini sayı olarak alırken b değerini string olarak almaktır.
+Sonrasında b değerini float bir sayıya çevirmekteyiz.
+'''
+
+a = 1
+
+b = "3.14"
+b = 3.14
+```
+
+Burada dilersek docstring'i yine string gibi tek veya çift tırnak olarak da kullanabiliriz.
