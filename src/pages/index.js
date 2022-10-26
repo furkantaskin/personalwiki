@@ -4,7 +4,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import myAvatar from '@site/static/img/me.png'
+import Personal from '@site/src/components/personal';
 
 import styles from './index.module.css';
 
@@ -28,10 +28,7 @@ export default function Home() {
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
-        <div style={{textAlign: "center"}}><img src={myAvatar} style={{
-          width: "400px",
-          paddingTop: "30px",
-        }}/></div>
+        <Personal />
         <HomepageFeatures />
       </main>
     </Layout>
