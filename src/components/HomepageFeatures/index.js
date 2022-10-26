@@ -18,7 +18,9 @@ const FeatureList = [
     description: (
       <>
       Pythonista <br/>
-      Loves Blender, Photoshop and GNU/Linux
+      Loves Blender, Photoshop and GNU/Linux <br/>
+      There is nothing greater than the love of cats for him <br/>
+      Can be found on the internet as 'muffinisamuffin'
       </>
     ),
   },
