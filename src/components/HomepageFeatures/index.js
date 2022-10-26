@@ -28,7 +28,7 @@ const FeatureList = [
     description: (
       <>
       Email: furkan.taskin[at]tuta.io <br/>
-      LinkedIn: <a href='https://linkedin.com/in/furkant1'>furkant1</a>
+      LinkedIn: <a href='https://linkedin.com/in/furkant1' target="_blank">furkant1</a>
       </>
     ),
   },
