@@ -28,7 +28,10 @@ export default function Home() {
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
-        <div><img src={myAvatar}/></div>
+        <div style={{textAlign: "center"}}><img src={myAvatar} style={{
+          width: "400px",
+          paddingTop: "30px",
+        }}/></div>
         <HomepageFeatures />
       </main>
     </Layout>
