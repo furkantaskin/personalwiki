@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import myAvatar from '@site/static/img/me.png'
+import myAvatar from '@site/static/img/me.jpeg'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function Personal() {
