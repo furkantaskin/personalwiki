@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Furkan Taskin',
+  title: 'Furkan Taşkın',
   tagline: 'Personal wiki for my learning path',
   url: 'https://furkantaskin.netlify.app',
   baseUrl: '/',
