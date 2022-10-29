@@ -3,7 +3,7 @@ sidebar_position: 4
 custom_edit_url: null
 description: "Temel Veri Tipleri ve Python'a Giriş"
 ---
-# Temel Veri Tipleri ve Python'ın Temelleri
+# Temel Veri Tipleri ve Python'da Değişkenler
 
 ## Temel Veri Tipleri
 
@@ -55,11 +55,53 @@ Değişken oluştururken dikkat edilmesi gereken kurallar vardır.
 
 :::
 
+
+:::info BİLGİ
+
+Python' çeşitli isimlendirme metodlarını desteklemektedir. 
+
+- **CamelCase**: `ornekBirDegiskenAdi` şeklinde birden fazla kelime içeren değişkenlerde ilk kelime dışındaki kelimelerin ilk harfinin büyük olduğu tanımlama türüdür.
+  - Sınıf tanımlamalarında kullanılması tercih edilir. Örneğin `class OrnekClass` gibi
+- **PascalCase**: `OrnekBirDegiskenAdi` şeklinde CamelCase yapısına benzeyen ancak ilk kelimenin ilk harfinin de büyük olduğu durumlardır. 
+
 <details>
-  <summary>Gömülü kelimeler</summary>
+  <summary>Korunmuş kelimeler</summary>
   <div>
-    Python içerisinde gömülü kelimeler (keywordler) şöyledir: <br/>
-    and, as, assert, break, class, continue, def, del, elif, else, except, False, finally, for, from, global, if, in, is, lambda, None, nonlocal, not, or, pass, raise, return, True, try, while, with, yield
+    Python içerisinde korunmuş kelimeler (reserved keyword) şöyledir: <br/>
+    <ul>
+      <li>and</li>
+      <li>as</li>
+      <li>assert</li>
+      <li>break</li>
+      <li>class</li>
+      <li>continue</li>
+      <li>def</li>
+      <li>del</li>
+      <li>elif</li>
+      <li>else</li>
+      <li>except</li>
+      <li>False</li>
+      <li>finally</li>
+      <li>for</li>
+      <li>from</li>
+      <li>global</li>
+      <li>if</li>
+      <li>in</li>
+      <li>is</li>
+      <li>lambda</li>
+      <li>None</li>
+      <li>nonlocal</li>
+      <li>not</li>
+      <li>or</li>
+      <li>pass</li>
+      <li>raise</li>
+      <li>return</li>
+      <li>True</li>
+      <li>try</li>
+      <li>while</li>
+      <li>with</li>
+      <li>yield</li>
+    </ul>  
   </div>
 </details>
 
@@ -190,3 +232,4 @@ b = 3.14
 ```
 
 Burada dilersek docstring'i yine string gibi tek veya çift tırnak olarak da kullanabiliriz.
+
