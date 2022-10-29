@@ -4,26 +4,6 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
-async function createConfig() {
-  const mdxMermaid = await import('mdx-mermaid')
-
-  return {
-    presets: [
-      [
-        'classic',
-        {
-          docs: {
-            remarkPlugins: [mdxMermaid.default],
-          }
-        }
-      ]
-    ]
-  }
-}
-
-module.exports = createConfig;
-
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Furkan Taşkın',
