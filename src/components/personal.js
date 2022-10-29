@@ -20,10 +20,13 @@ export default function Personal() {
           marginBottom: "30px"
         }} />
         <h1 style={{ marginBottom: "10px" }}>{siteConfig.title}</h1>
-        <p style={{textAlign: "center"}}>
-          Born in 1996 and started to learn front-end development in 2012. And then, met his lovely language Python in 2017. <br />
-          Currently working as freelance Python and Front-end developer for government organizations and private companies in Turkey. <br/>
-          Improving himself on modern Front-end technologies like React, Redux, Next.js etc. <br />
+        <p style={{ textAlign: "center" }}>
+          Born in 1996 and started to learn front-end development in 2012. In 2017, he discovered the wonderful language Python. <br/>
+
+          Currently working as a freelance Python and Front-end developer for government organizations and private companies in Turkey. <br/>
+
+          Improving his knowledge of modern front-end technologies such as React, Redux, Next.js, etc. <br/>
+
           Learning new languages like Go and Rust.
         </p>
       </div>
