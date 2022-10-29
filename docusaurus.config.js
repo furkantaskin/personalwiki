@@ -71,10 +71,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [{name: "keywords", content: "python, golang, frontend development"}],
       navbar: {
-        title: 'Furkan Taşkın',
+        title: 'Furkan Taskin',
         logo: {
-          alt: 'Furkan Taşkın',
+          alt: 'Furkan Taskin',
           src: 'img/python-img.svg',
         },
         items: [
@@ -82,7 +83,7 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Docs',
+            label: 'Personal Notes',
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
