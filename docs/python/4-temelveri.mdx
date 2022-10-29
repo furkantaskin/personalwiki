@@ -62,7 +62,14 @@ Python' çeşitli isimlendirme metodlarını desteklemektedir.
 
 - **CamelCase**: `ornekBirDegiskenAdi` şeklinde birden fazla kelime içeren değişkenlerde ilk kelime dışındaki kelimelerin ilk harfinin büyük olduğu tanımlama türüdür.
   - Sınıf tanımlamalarında kullanılması tercih edilir. Örneğin `class OrnekClass` gibi
-- **PascalCase**: `OrnekBirDegiskenAdi` şeklinde CamelCase yapısına benzeyen ancak ilk kelimenin ilk harfinin de büyük olduğu durumlardır. 
+- **PascalCase**: `OrnekBirDegiskenAdi` şeklinde CamelCase yapısına benzeyen ancak ilk kelimenin ilk harfinin de büyük olduğu durumlardır. Aynı CamelCase gibi sınıf tanımlamalarında kullanılması önerilir.
+- **Snake Case**: `ornek_degisken` gibi çok kelimeli değişken isimlerinde boşluk yerine alt çizgi (_) kullanılması şeklindedir.
+  - Fonksiyon isimleri, değişken isimleri ve sınıf metodlarının yanı sıra sabit değerler (constant) için kullanılması önerilir.
+  - Modül kullanımlarında çok kelimeli modüllerde kullanılabilir. `ornek_module.py` gibi kullanımı uygundur.
+- **Uppercase**: Sabit değerler için kullanılması önerilir. Snake case ile kullanılabilir. Örneğin `SABIT_DEGISKEN` ya da `SABIT` gibi kullanılır.
+
+:::
+
 
 <details>
   <summary>Korunmuş kelimeler</summary>
