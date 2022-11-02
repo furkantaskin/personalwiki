@@ -18,6 +18,15 @@ Python temelde integer, string, float, bool veri tiplerini barındırır. Bunlar
 
 Buradaki değişkenlerimizin tipini `type()` ile kontrol edebiliriz. 
 
+:::tip TRIVIA
+
+Aslında biz bunlara "literal" kavramını kullanıyoruz.
+
+Python içinde literal, bir değişken veya sabit ifadeye atanmış ham veriler olarak geçmektedir. Biz burada `a=5` derken a'nın tipinin integer olduğunu ve 5 değerinin de bir integer literal yani numerik bir ifade olduğunu söylemiş oluruz. Buradaki örnekler zamanla artarak gidebilir.
+
+:::
+
+
 ## Değişkenler
 
 Değişkenler, veri değerlerini tutan yapılar olarak kısa bir şekilde tanımlanabilir.
@@ -67,6 +76,19 @@ Python' çeşitli isimlendirme metodlarını desteklemektedir.
   - Fonksiyon isimleri, değişken isimleri ve sınıf metodlarının yanı sıra sabit değerler (constant) için kullanılması önerilir.
   - Modül kullanımlarında çok kelimeli modüllerde kullanılabilir. `ornek_module.py` gibi kullanımı uygundur.
 - **Uppercase**: Sabit değerler için kullanılması önerilir. Snake case ile kullanılabilir. Örneğin `SABIT_DEGISKEN` ya da `SABIT` gibi kullanılır.
+
+:::
+
+
+:::tip TRIVIA
+
+Python içerisinde integer tanımlaması yaparken sadece sayı değeri yerine bit, octal veya hexadecimal tanımlamalar da yapılabilir. Şu an kafa karıştırmamak için değinmeyeceğim.
+
+```py
+a = 0b11011000 # 216 - bit değeri
+b = 0o12 # 10 - octal değer
+c = 0x12 # 15 - hexadecimal değer
+```
 
 :::
 
@@ -133,7 +155,7 @@ a = "10"
 b = '11'
 ```
 
-şekinde dilersek tek tırnak dilersek çift tırnak kullanabiliriz.
+şekinde dilersek tek tırnak dilersek çift tırnak kullanabiliriz. Bunu [ileri konuda detaylı olarak gösterdik](operatorlerveprint#pythonda-stringler-string-literal)
 
 :::
 

@@ -25,7 +25,7 @@ const config = {
     mermaid: true,
   },
   themes:['@docusaurus/theme-mermaid'],
-
+  
   presets: [
     [
       'classic',

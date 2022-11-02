@@ -1,13 +1,187 @@
 ---
 sidebar_position: 5
 custom_edit_url: null
-description: "Python içinde temel operatörler ve print fonksiyonu"
+description: "Python içinde temel operatörler ve temel string ile bool bilgileri"
 ---
 
-# Python'da Operatörler, String Yapısı ve Ekrana Yazdırma İşlemleri
+# Python'da String, Bool Yapısı ve Aritmetik Operatörler 
 
+Python içinde kaybolmadan önce temel yapılarımızı tanıyarak ilerleyeceğiz.
 
-```mermaid
-graph TB;
-  A-->B;
+## Python'da Stringler (String Literal)
+
+Stringler ya da karakter dizileri, anlamlı ya da anlamsız olarak günümüzdeki mevcut karakterlerin bir araya gelmesi ile oluşturduğu yapılardır. Yani bizim deftere ya da bilgisayara yazdığımız notları birer string gibi düşünebiliriz. Python içerisinde tek tırnak veya çift tırnak arasına yerleştirilen yapılar string olarak geçmektedir. Örneğin `"Merhabalar herkese"` ifadesi verilebilir. Programlama servünemizin neredeyse her noktasında string tipi ve kullanımı ile karşılaşacağız. Ondan dolayı da stringler üzerine değinmekte fayda var. Aşağıdaki örneklerin hepsi birer stringdir
+
+```py showLineNumbers
+"Merhabalar"
+
+'bir diğer merhaba'
+
+" "
+
+"6"
+
+"2.6"
+
+"True"
+
+'"None"'
+
+"""
+Örneğin 
+çok satırlı bir metin
+dahi oluşturabilirim ve
+buna hiçbir şey engel değil
+"""
+
 ```
+
+Aslında yukarıdaki örnekte yeni bir string tanımlaması yaptık. Yorumlardan hatırladığımız 3'lü tırnak işareti (") bize çok satırlı metinler yazma imkanı sağlamaktadır. Bunun bir faydası daha var. O da karşılaşacağımız sorunda belli olacak.
+
+### Stringlerde Kaçış İşaretleri Kullanımı
+
+Normal şartlarda stringler içinde boşluk veya özel karakter kullanmamız gerekebilir. Bunları Python yorumlama aşamasında görerek elimizdeki metni farklı bir yapıya çevirir. Normalde biz üçlü tırnak işareti ile çok satırlı yazmayı biliyoruz ama bunu tek tırnak ile nasıl yaparız? Aşağıdaki kod buna bir örnek.
+
+```py
+print("Merhaba\n Dünya")
+
+# Yukarıdaki kodun çıktısı şu şekildedir
+# Merhaba
+# Dünya
+```
+Kaçış işaretlerini Python başlarına gelen ters bölü (backslash - \\) ile anlamaktadır.
+
+Kaçış işaretleri listesi
+
+- `\n`: Yeni satır oluşturur
+- `\'`: Tek tırnak oluşturur
+- `\"`: Çift tırnak oluşturur
+- `\a`: Terminal uygulamalarında terminalin varsayılan sesini çıkarır
+- `\b`: Backspace olarak da bilinen silme karakterini uygular. Örneğin `print("merhaba\bselam")` kodu bize merhabselam çıktısı verecektir.
+- `\r`: Satır başına atar. Örneğin `print("merhaba\rselam)` ifadesi selamba çıktısı verecektir.
+- `\t`: Tab ile aynı görevi görür. Sistemde ön tanımlı boşluk kaç ise bu ifade o kadar boşluk atar.
+
+Stringlerde normalde tek tırnak ile de tanımlama yapabiliriz demişti. Şimdi gördüğümüz kaçış işaretlerine bakacak olursak neden lazım olduklarını göreeğiz. Mesela
+
+```py showLineNumbers
+print('Bu bir örnek')
+# This will error
+print('Türkiye'nin başkenti Ankara'dır')
+```
+
+Peki ne oldu? Biz tek tırnak arasına metin yazdığımız için burada ekleri ayırmak amacıyla kullandığımız tırnak hata verdi. İşte bu tür durumları aşmak için iki yöntem var:
+
+1. Çift tırnak ile tanımlama
+```py
+print("Türkiye'nin başkenti Ankara'dır")
+```
+2. Kaçış işareti kullanmak
+```py
+print('Türkiye\'nin başkenti Ankara\'dır').
+```
+Aynı durum çift tırnak için de geçerlidir.
+
+```py
+# YANLIŞ
+# This will error
+print(""book" kelimesi Türkçe'de "kitap" anlamına gelir")
+
+# DOĞRU
+print("\"book\" kelimesi Türkçe'de \"kitap\" anlamına gelir")
+```
+
+## Farklı Bool Gösterimleri
+
+Python içerisinde bazı durumlarda doğruluk ve yanlışlık kontrolü gerekebilir. Örnek olarak yaşımızın 18'den büyük olması çeşitli hak ve sorumluluklara sahip olduğumuz anlamına gelir ancak bazen yaş veya diğer durumlardan çok bir olayın doğru ya da yanlış olduğunu kontrol etmemiz gerekebilir. İşte bu tür durumlarda direkt olarak `True / False` ibarelerini kullanamayabiliriz. Normalde bool kalıplarını [temel veri tiplerinde](temelveri#temel-veri-tipleri) görmüştük. Bunu biraz daha açabiliriz.
+
+Bool dediğimiz kavram sadece True veya False ibaresine bağlı olmadan da kontrol edilebilir. Örnek olarak bunu `bool()` metodu ile test edebiliriz.
+
+### Bool İçinde True Dönen İfadeler
+
+- 0 dışındaki herhangi bir numerik değer (1,-5, 128, 0.1, -0.001 vb.)
+- Boş olmayan herhangi bir metin ("merhaba", "a", " ", "\n" vb.)
+- `True değeri`
+
+```py
+# Numerik
+bool(2)
+bool(0.1)
+bool(0.0001)
+bool(-1.24)
+bool(-5)
+
+# Karakter Dizisi (String)
+bool(" ")
+bool("a")
+bool("merhaba")
+bool("\n")
+
+bool([""]) # Buna odaklanmayın
+
+bool(True)
+```
+
+### Bool İçinde False Dönen İfadeler
+
+İçi boş metinler veya 0 değeri veren numerik ifadeler
+
+```py
+bool(0)
+bool(-0.0)
+
+bool("")
+
+
+bool(False)
+```
+
+## Matematiksel Operatörler (İşleçler)
+
+Genel anlamı ile gelirsek operatörler ya da işleçler, iki tarafında bulunan değerler arasında ilişki kurmayı sağlayan işaretlerdir. Bunu sadece matematiksel olarak düşünmemek gerekir çünkü burada karşılaştırmadan bool operatörlerine, bit operatörlerinden kimlik veya aidiyete kadar çok sayıda operatör vardır. Ancak amacımız adım adım ilerlemek olduğu için biz temelde matematiksel operatörler ile yolumuza devam edeceğiz.
+
+Matematiksel operatörler (ya da aritmetik operatörler) numerik tabanlı değerler başta olmak üzere belirli şartlar altında diğer operatörlerde de matematiksel işlemler yapmayı sağlayan operatörlerdir. Biz bunları aslında çok yakında tanıyoruz. 
+
+Python kendi içerisinde 7 farklı operatör barındırmaktadır. Bunlar:
+
+- Toplama (+)
+- Çıkarma (-)
+- Çarpma (*)
+- Bölme (/)
+- Kalan Bulma ya da diğer adı ile "modülüs" (%)
+- Kuvvet hesaplama (**)
+- Tam bölüm bulma (//) 
+
+şeklindedir. Bu operatörleri tanıdıktan sonra ileri bölümlerde bu kısma yeniden değineceğiz. Temel kullanımlarına bakacak olursak
+
+```py
+# Toplama
+3 + 5 # 8
+
+# Çıkarma
+5 - 3 # 2
+
+# Çarpma
+5 * 3 # 15
+
+# Bölme
+5 / 3 # 1.666666...
+
+# Modülüs 
+5 % 3 # 2 
+
+# Kuvvet Hesaplama
+5 ** 3 # 125
+
+# Bölüm Bulma
+5 // 3 # 1
+```
+
+Burada dört işleme zaten hakimiz. Belki burada kafamızı modülüs ile bölüm bulma karıştırabilir. Modülüs (%) operatörünün olayı ilk değeri ikinci değere böldükten sonra elimizdeki kalan değeri bulmaktır. Yani matematikten bildiğimiz mod işlemini uygulamaktadır. 
+
+Bölüm bulma işlemini de biz aslında 101'de sıkça görmekteyiz. Olay ilk değeri ikinciye böldüğümüz zaman çıkan ondalıklı ifadeyi aşağıya yuvarlamaktır. Normalde örnekte de göreceğimiz üzere 5'in 3'e bölümünden kalan noktalı bir ifade iken `5//3` ifadesi bana 1 değerini döndürdü. Yani ondalıklı kısmı aslında silerek bana tam bir ifade geldi. Burada bilmemiz gereken bazı durumlar olacak.
+
+:::warning ÖNEMLİ
+
+- Bölme işlemi integer tipindeki ifadeler arasında olsa da ya da sonuç tam sayı dahi çıksa da sonucumuzun tipi float olarak dönecektir. Yani `6 / 3` işleminin sonucu 2 yerine 2.0 olarak dönecektir. 
+- Çarpma işlemi sadece iki numerik ifade arasında değil, bir string ile bir tam sayı (integer) arasında da olabilir. Örneğin `"a" * 3` ifadesi bize "aaa" değerini döndürecektir. Ancak burada `"a"*2.5` yaparsak hata ile karşılaşacağız.
+- Toplama işlemi sadece iki numerik ifade arasında değil, iki string arasında bağlama (concatenate) işlevi de görmektedir. Yani `"a" + "b"` işlemi yaparsak dönen sonuç "ab" olacaktır. 
