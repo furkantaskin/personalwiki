@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/githublogo.svg').default,
     description: (
       <>
-        Visit my <a href="https://gitthub.com/furkantaskin">GitHub profile</a> for personal projects
+        Visit my <a href="https://gtthub.com/furkantaskin">GitHub profile</a> for personal projects
       </>
     ),
   },
