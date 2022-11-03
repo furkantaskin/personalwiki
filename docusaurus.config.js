@@ -121,7 +121,7 @@ const config = {
         magicComments: [
           {
             className: 'theme-code-block-highlighted-line',
-            line: 'This line active',
+            line: 'This will active',
             block: { start: 'highlight-start', end: 'highlight-end' },
           },
           {
