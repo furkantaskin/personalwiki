@@ -1,17 +1,21 @@
 ---
 sidebar_position: 6
 custom_edit_url: null
-description: "Python içinde print fonksiyonu kullanımı"
+description: "Python içinde print ve input fonksiyonu kullanımı"
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `print()` Fonksiyonu
+# Ekrana Yazdırma ve Kullanıcıdan Veri Alma
 
-Normalde önceki kısımlarda bu fonksiyonu az biraz görsek de artık bu fonksiyonu gerçekten tanımakta faydalar var. Çünkü her zaman verilerimiz çok basit formlarda veya görevimiz ekrana direkt olarak sabit bir yazı yazdırmak olmayacak. Bunun için elimizdeki bu eşsiz fonksiyonu gerçekten tanımamız lazım.
+Normalde önceki kısımlarda `print()` fonksiyonunu az biraz görsek de artık bu fonksiyonu gerçekten tanımakta faydalar var. Çünkü her zaman verilerimiz çok basit formlarda veya görevimiz ekrana direkt olarak sabit bir yazı yazdırmak olmayacak. Bunun için elimizdeki bu eşsiz fonksiyonu gerçekten tanımamız lazım.
 
-Normal şartlarda kullandığımız IDLE direkt olarak değişkenlerimizi bize göstermişti. Bu ufak denemelerde ideal ancak yeri gelince kaynak kodlar için dosya açıp bu dosyalardan kullanıcının terminaline bazı çıktılar göndermemiz gerekecek. İşte bunun için `print()` fonksiyonu kullanıyoruz. Python'da print yazımının ne kadar kolay olduğuna bir bakalım
+Normal şartlarda kullandığımız IDLE direkt olarak değişkenlerimizi bize göstermişti. Bu ufak denemelerde ideal ancak yeri gelince kaynak kodlar için dosya açıp bu dosyalardan kullanıcının terminaline bazı çıktılar göndermemiz gerekecek. İşte bunun için `print()` fonksiyonu kullanıyoruz. `print()` fonksiyonu, Python içinde bulunan dahili ([**built-in**](https://docs.python.org/3/library/functions.html#built-in-functions)) 71 fonksiyondan bir tanesidir.
+
+## `print()` Kullanımı
+
+Python'da print yazımının ne kadar kolay olduğuna bir bakalım.
 
 <Tabs>
   <TabItem value="py" label="Python" default>
@@ -35,8 +39,184 @@ int main(){
   </TabItem>
 </Tabs>
 
+C ailesinde ekrana yazdırma işlemi çok fazla parametreye (kütüphanelerin eklenmesi, namespace tanımlanması veya yazdırma kısmında çağrılması vb) bağlı olarak gerçekleşirken Python bu kısımda bize büyük kolaylık sağlamakta.
 
-```mermaid
-graph TB;
-a-->b
+
+
+`print()` fonksiyonu sabit metin veya değişkenlerin yanı sıra çok sayıda veriyi ekrana yazdırmada kolaylık sağlar. Örnek olarka sabit bir metin yazmak istersek bunu şu şekilde yazabiliriz:
+
+```py
+print("Merhaba dünya")
 ```
+
+Dilersek buradaki ifadeyi bir değişken olarak da çağırabiliriz.
+
+```py
+ismim = "Furkan"
+print(ismim)
+```
+
+Burada fonksiyon, önceki konularda gördüğümüz tüm tipleri desteklemektedir. Yani string için kaçış karakterleri, veriler için aritmetik operatörler gibi ifadelerin yanı sıra bool durumlarını da destekler. Şimdi aşağıdaki kodları teker teker çalıştırıp ne olacağını görebilirsiniz:
+
+```py
+print(3<5)
+
+print(3>5)
+```
+
+## `print()` Parametreleri
+
+`print()` fonksiyonu çeşitli parametrelere sahiptir ve bu fonksiyonu, göndereceğimiz argümanlarla daha verimli kullanabiliriz. Şimdilik teorik olarak bilelim.
+
+- ** *objects **: Print edilecek verileri belirtir.[^1] 
+- **sep**: İki ifade arasında kullanılacak ayırma ifadesini belirtir. Varsayılan boşluk karakteridir.
+- **end**: Ekrana yazdırma işleminden sonra yapılacak işlemi belirtir. Varsayılan yeni satır karakteri "\n" atmaktır.
+- **file**: Print işleminin hangi dosyaya yazılacağını belirtir. Varsayılan `sys.stdout` şeklindedir.
+- **flush**: Burası çok komplike bir detay. Şu an için bilmemize gerek yok
+
+Bunların kullanımını inceleyelim.
+
+### Çoklu Argüman Gönderme (`*objects`)
+
+`print()` fonksiyonu bize birden fazla veri bastırma imkanı sağlamaktadır. Örneğin isim ve soyismimizi bastırmak isteyelim.
+
+```py
+name = "Furkan"
+surname = "Taşkın"
+
+print(name)
+print(surname)
+```
+
+Eski gördüğümüz yöntem ile isim ve soyisim ekrana bastırılacaktır ama hem bize iş yükü çıkaracak hem de isim ve soy ismi alt alta yazacaktır. Biz ise bunun yan yana olmasını isteriz. İşte bunu şu şekilde yapıyoruz 
+
+```py
+name = "Furkan"
+surname = "Taşkın"
+
+print(name, surname)
+```
+
+İşte bu kadar basit. Çıktımız artık "Furkan Taşkın" olarak gelecektir. 
+
+
+:::tip trivia 1
+
+Burada şöyle bir şeyi açıklayabiliriz. 
+
+Normalde parametre içinde `sep=" "` ve `end = "\n"` olmak üzere iki parametre vardı. Sep burada birden fazla nesne gönderildiğinde bu nesnelerin neyle ayrılacağını göstermektedir. Biz burada `name` ve `surname` olarak iki argüman gönderdiğimiz için fonksiyonumuz iki nesnenin arasına boşluk atarak ekrana yazdırmayı tercih etti.
+
+:::
+
+
+Sadece iki değişken değil, bir literal (değer) ve bir değişken de gönderebiliriz. Burada belirli bir sınır yok.
+
+```py
+a = "a"
+b = "b"
+d = "d"
+e = "e"
+f = "f"
+
+print("Deneme", a, b, "Bir diğer deneme", "Şaka", 10, 3.14)
+```
+
+Çıktımız sorunsuz bir şekilde gelecektir.
+
+### Özel Ayırma Karakteri Kullanma (`sep`)
+
+Normalde Python `print()` fonksiyonunda varsayılan olarak boşluk karakteri kullanarak birden fazla argümanı ayırır. Biz dilersek bunu değiştirebiliriz. Mesela kısa çizgi kullanmamız gereken bir durum olduğunu düşünelim. Bunu `print("Furkan", "-", "Taşkın")` olarak yaparsak çıktımız "Furkan - Taşkın" olacaktır ve yine boşluk kalacaktır. Boşluklardan kurtulmak için `print()` fonksiyonunda şöyle bir işlem yapabiliriz.
+
+```py
+name = "Furkan"
+surname = "Taşkın"
+
+print(name, surname, sep="-")
+```
+
+Artık çıktımız "Furkan-Taşkın" şeklinde gelecektir. Burada `sep` parametresi aslında şu anlama gelmektedir:
+
+> Benim sana gönderdiğim tüm verilerin birbiri ile bağlarken boşluk yerine sana gönderdiğim işareti kullan.
+
+Yani dilersek burada `print(name,surname,sep="")` diyebiliriz ve çıktımız "FurkanTaşkın" olacaktır. 
+
+:::warning ÖNEMLİ
+
+Burada `sep` değeri string ve None dışında bir değer olamaz. Yani 0, 3.14 veya True gibi değerler gönderemeyiz. Ancak string tipnde olmalıdır. Burada 0 gibi bir numerik değer kullanacaksak tırnak işaretleri içinde göndermeliyiz. Buradaki tırnağın çift veya tek olması önemli değildir.
+
+:::
+
+### Son Karakteri Değiştirme (`end`)
+
+Normalde `print()` fonksiyonu burada özel bir bitirme işareti kullanır. Bu işaret önceki konularda gördüğümüz yeni satır (\n) karakteridir. Bunu bazı durumlarda - ki özellikle döngülerde - değiştirmemiz gerekebilir. Yani ben birden fazla veri bastıracaksam ekrana burada her bir print sonrası gelen yeni satırı ortadan kaldırmam gerekir. İşte buna `end` parametresi ile müdahale ederiz.
+
+Örnek verecek olursak
+
+```py
+print("Furkan")
+print("Taşkın")
+
+"""
+Bu kodun çıktısı: 
+Furkan
+Taşkın
+
+şeklinde olacaktır.
+"""
+```
+
+Normalde bu kod bize alt alta yazılmış iki çıktı verecektir. Biz bunu tek satıra indirgeme istiyorsak bize engel olan yeni satır karakterini değiştirebiliriz. Tek yapmamız gereken `print("Furkan")` işleminde yeni bir argüman eklemek.
+
+```py
+# This will active
+print("Furkan", end="")
+print("Taşkın")
+```
+
+Bu seferki çıktımız da birleşik gelecektir. Bunu ayırmak için `end` parametresi için boşluk göndermemiz yeterli olacaktır.
+
+```py
+print("Furkan", end=" ")
+print("Taşkın")
+```
+
+
+### Dosyaya Yazdırma (`file`)
+
+Burayı çok uzatmadan açıklamak gerekirse `print()` fonksiyonu bize yazılan çıktının nereye gideceğini aslında sorar. Ama cevap vermediğimiz için kendi içinde tanımlı yere gider. Bu değer `sys.stdout` olarak gelmektedir[^2].
+
+> Özet vermek gerekirse `sys.stdout` dediğimiz olay, o sırada kullandığımız etkileşim aracı ne ise(terminal, IDLE vb.) o araca çıktı verir. 
+
+Dilersek bu fonksiyonu bir dosyaya yazma işlemi yaparken de kullanabiliriz. Ancak şu an için değinmeyeceğiz ve ilerleyen konularda sıkça göreceğiz.
+
+```py
+my_file = open("ornek.txt", "w")
+print("Deneme içerik", file=my_file)
+my_file.close()
+```
+
+### `flush` Olayı
+
+Bu olaya dosya işlemlerinde uzun uzun değineceğiz o yüzden detaya girmek istemiyorum. Özü şu şekildedir:
+
+Normalde işletim sistemleri verimlilik için yazma okuma işlemlerini bir tampona aldıktan sonra işlemlerin ardından bu verileri toplu olarak basar. 
+
+```py
+
+from time import sleep
+
+fp = sys.stdout
+# This will active
+print('Do you want to continue (Y/n): ', end='', flush=False)
+sleep(5)
+```
+
+Ekrana çıktımız 5 saniye sonra geldi. Ancak biz bu kodu normalde önce kullandık. İşte Python'da işlemler bitene kadar bizim çıktımızı bir tamponda tuttu ve sonrasında işlemler bitince ekrana verdi. Eğer oyalanmadan çıktı vermemiz gereken durumlar varsa burada `flush=True` yapmamız yeterlidir. İşaretli satırda bulunan değeri `True` yapıp deneyebilirsiniz.
+
+
+## `input()` Fonksiyonu
+
+
+
+[^1]: Python `*objects` kelimesinde aslında bir bilgi bulunduruyor. Biz bundan bahsetmesek de aslında her şey birer objedir. Hatırlarsak `type()` fonksiyonu bize içinde class geçen bir değer döndürüyordu. Obje dediğimiz kavram içinde bir verinin yanı sıra kendisine bağlanmış çeşitli işlevsellikler barındıran bir varlıktır. Yani günümüzde bir araba nasıl nesne ise ve kendine has özellik ile işlevsellikleri varsa Python içinde de nesneler aynı mantıktadır."
+[^2]: Detaylı bilgi isteyenler için: https://docs.python.org/3/library/sys.html#sys.stdout
