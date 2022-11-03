@@ -8,7 +8,7 @@ description: "Python içinde temel operatörler ve temel string ile bool bilgile
 
 Python içinde kaybolmadan önce temel yapılarımızı tanıyarak ilerleyeceğiz.
 
-## Python'da Stringler (String Literal)
+## Python'da Stringler (String Literal) {#strings}
 
 Stringler ya da karakter dizileri, anlamlı ya da anlamsız olarak günümüzdeki mevcut karakterlerin bir araya gelmesi ile oluşturduğu yapılardır. Yani bizim deftere ya da bilgisayara yazdığımız notları birer string gibi düşünebiliriz. Python içerisinde tek tırnak veya çift tırnak arasına yerleştirilen yapılar string olarak geçmektedir. Örneğin `"Merhabalar herkese"` ifadesi verilebilir. Programlama servünemizin neredeyse her noktasında string tipi ve kullanımı ile karşılaşacağız. Ondan dolayı da stringler üzerine değinmekte fayda var. Aşağıdaki örneklerin hepsi birer stringdir
 
@@ -135,7 +135,7 @@ bool("")
 bool(False)
 ```
 
-## Matematiksel Operatörler (İşleçler)
+## Matematiksel Operatörler (İşleçler) {#islecler}
 
 Genel anlamı ile gelirsek operatörler ya da işleçler, iki tarafında bulunan değerler arasında ilişki kurmayı sağlayan işaretlerdir. Bunu sadece matematiksel olarak düşünmemek gerekir çünkü burada karşılaştırmadan bool operatörlerine, bit operatörlerinden kimlik veya aidiyete kadar çok sayıda operatör vardır. Ancak amacımız adım adım ilerlemek olduğu için biz temelde matematiksel operatörler ile yolumuza devam edeceğiz.
 
@@ -200,3 +200,23 @@ Python burada PEMDAS kuralı kullanır.
 - Subtraction (Çıkarma)
 
 Detaylı sıralama için sitesini [**ziyaret edebiliriz**](https://docs.python.org/3/reference/expressions.html#operator-precedence)
+
+:::
+
+Ek bir bilgi vermek gerekirse değişken değerlerini operatörler ile de güncelleyebiliriz. Örneğin
+
+```py
+a = 2
+a = a + 3 # a değeri artık 5 oldu
+
+b = 10
+b = b*6 # b değeri artık 60 oldu
+
+c = 100
+c = c / 10 # c değeri artık 10 değil 10.0 oldu
+
+d = 40
+d = d // 3 # d değeri artık 13 oldu
+```
+
+Bunları değer atama operatörlerinde daha detaylı göreceğiz.

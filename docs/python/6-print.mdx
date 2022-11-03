@@ -211,9 +211,99 @@ sleep(5)
 
 Ekrana çıktımız 5 saniye sonra geldi. Ancak biz bu kodu normalde önce kullandık. İşte Python'da işlemler bitene kadar bizim çıktımızı bir tamponda tuttu ve sonrasında işlemler bitince ekrana verdi. Eğer oyalanmadan çıktı vermemiz gereken durumlar varsa burada `flush=True` yapmamız yeterlidir. İşaretli satırda bulunan değeri `True` yapıp deneyebilirsiniz.
 
+Örneğin çok temel bir örnek verelim. Kendimizi kısaca tanıtan bir çıktı verdiğimizi düşünelim.
+
+```py
+name = "Furkan"
+surname = "Taşkın"
+height = 1.82
+age = 26
+favourite_dessert = "muffin"
+print("Merhaba. Ben", name, surname, ". Boyum", height, "metreyken yaşım", age, "ve en sevdiğim tatlı", favourite_dessert)
+```
+
+Aslında print bu kadar kolay. Ancak burada bu yazımı daha da kolaylaştıracak bir ifade var. Her ne kadar ileride buna uzunca değinecek olsak da şimdilik hızlıca özet geçmek yeterli olacaktır.
+
+f-string de olarak bilinen bir ifademiz var. Buna metin biçimlendirme (string interpolation) de diyebiliriz. Kullanımı çok basittir. Yukarıdaki örneğimizi düşünelim. Normalde çok sayıda virgül ile her bir değeri tek tek ayırmamız gerekti ve çıktıda ".... Taşkın . ...." şeklinde soyadından sonra boşluk konuldu. Biz bunu istemiyoruz ve daha düzgün bir görünüm istiyoruz. O zaman şunu yapabiliriz.
+
+```py
+name = "Furkan"
+surname = "Taşkın"
+height = 1.82
+age = 26
+favourite_dessert = "muffin"
+print(f"Merhaba. Ben {name}{surname}. Boyum {height} metreyken yaşım {age} ve en sevdiğim tatlı {favourite_dessert}")
+```
+Artık çok rahat bir şekilde ve okunabilir şekilde ekrana çıktımızı verebiliriz. Burada yapmamız gereken olay süslü parantezler içine değişken adlarımızı yazmak.
 
 ## `input()` Fonksiyonu
 
+Kullanıcıya bir şeyler göstermeyi öğrettik. Peki kullanıcıdan nasıl veri alacağız? İşte burada da bir diğer gömülü fonksiyon olan `input()` fonksiyonu işin içine girecek. 
+
+`input()` fonksiyonunun amacı, o an elimizdeki kanal vasıtası ile (IDLE, terminal veya başka alanlar) kullanıcıdan veri almayı sağlar. Örneğin
+
+```py
+a = input()
+print(a)
+```
+
+Bu kısımda ekrana ne yazarsanız yazın. Artık o değer çıktı olacaktır. Ancak burada bunu daha okunabilir yapabiliriz çünkü kullanıcı bir girdi yapması gerektiğini anlayamayabilir. İşte bunu yapması da şu kadar basit.
+
+```py
+a = input("Bana isminizi bağışlamak ister misiniz: ")
+print("Tanıştığıma memnun oldum", a) 
+# veya print("Tanıştığıma memnun oldum {a}") diyebiliriz.
+```
+
+Hadi olayları biraz kızıştıralım. Yani bir şeyler deneyelim. Diyelim ki biz bir değer alıp kaç yaşında olduğumuzu bulmak istiyoruz. 
+
+```py
+current_year = 2022
+year_of_birth = input("Hangi yılda doğdunuz: ")
+# This will error
+print("Demek ki", current_year - year_of_birth, "yaşındasınız")
+```
+
+Yok artık. Burada bir hata döndü.
+
+```plain
+TypeError: unsupported operand type(s) for -: 'int' and 'str'
+```
+
+Yani bize diyor ki bir sayıdan bir metni çıkarmaya çalıştık. Python burada bizim 3'ten elmayı çıkarmak gibi bir işlem yaptığımızı düşünüyor. Bunun sebebi ise şu:
+
+:::danger DİKKAT
+
+`input()` fonksiyonu ile aldığımız değer ne olursa olsun sonucu string olacaktır. Bunu `type()` ile test edebiliriz.
+
+:::
+
+Yani biz input içine ne gönderirsek gönderelim sonuç bize bir string olarak gelecektir. Python bunun bir sayı da ondalıklı ifade olduğunu anlamayacaktır. İşte burada [temel veriler](./4-temelveri.mdx#değişken-türü-değiştirme) içinde gördüğümüz değişken tipi değiştirme işlemi (type casting) uygulamamız gerekecek. Yani eğer kullandığımız ifade ne ise ona göre bir dönüşüm yapacağız. Biz tam sayı alacağımız için `int()` kullanmamız gerekecek.
+
+```py
+current_year = 2022
+year_of_birth = int(input("Doğum yılınız: "))
+print(f"Siz demek ki {current_year - year_of_birth} yaşındasınız")
+```
+
+Bir diğer örneğimiz şöyle olsun. Kullanıcının ekrana 100 defa a harfi basmasını istedik. İşte yapacağımız işlem şudur
+
+```py
+letter = "a"
+times = int(input("Kaç defa bu değer basılsın: "))
+print(letter*times)
+```
+
+Burada aslında [operatörler](./stringveoperatorler#islecler) kısmında değindiğimiz kaideler kullanarak işlemler yapabiliriz. Örneğin iki string ifadesini toplayabiliriz demiştik.
+
+```py
+name = input("Adınız: ")
+surname = input("Soyadınız: ")
+print(f"Siz {name + surname} olmalısınız")
+
+# Ancak burada boşluk gelmediğini gördük.  Bu durumda geleneksel yöntemi deneyebiliriz.
+# print("Siz", name, surname, "olmalısınız")
+```
 
 
 [^1]: Python `*objects` kelimesinde aslında bir bilgi bulunduruyor. Biz bundan bahsetmesek de aslında her şey birer objedir. Hatırlarsak `type()` fonksiyonu bize içinde class geçen bir değer döndürüyordu. Obje dediğimiz kavram içinde bir verinin yanı sıra kendisine bağlanmış çeşitli işlevsellikler barındıran bir varlıktır. Yani günümüzde bir araba nasıl nesne ise ve kendine has özellik ile işlevsellikleri varsa Python içinde de nesneler aynı mantıktadır."

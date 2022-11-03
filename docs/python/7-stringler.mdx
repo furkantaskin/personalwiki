@@ -1,0 +1,206 @@
+---
+sidebar_position: 7
+custom_edit_url: null
+description: "Stringleri tam olarak tanıyalım"
+---
+
+import Admonition from "@theme/Admonition"
+
+# Stringler
+
+[Önceki derslerimizde](./5-stringveoperatorler.mdx#strings) stringler üzerine hızlı bir aktarım yapmıştık. Artık detaylı bir şekilde stringler ya da karakter dizileri nedir bunları görelim.
+
+String ifadeler immutable olarak geçer. Yani değiştirilemez. Örneğin biz "Merhaba" diye bir string tanımladıysak bunun ilk harfi c olsun ve sonuç "Cerhaba" olsun diyemeyiz. Ancak yeni bir değişken ya da ileri konularda göreceğimiz çeşitli dönüşümleri kullanmamız gerekir.
+
+String ifadeler bir seri gibi davranır. Yani önceden de dediğimiz gibi stringler birer karakter dizisidir.
+
+Stringler içinde toplama işlemlerine (daha doğrusu birleştirme işlemlerine) [operatörler](./stringveoperatorler#islecler) içinde değinmiştik. Python içinde iki karakter dizisini rahat bir şekilde toplayabiliriz.
+
+```py showLineNumbers
+a = "Merhaba"
+b = "Dünya"
+print(a+b) # MerhabaDünya sonucu dönecektir. Buraya şu şekilde boşluk ekleyebiliriz
+
+print(a + " " + b) # artık çıktımız Merhaba Dünya olacaktır. Dilerske bu sonucu bir değişkene de atayabiliriz
+
+yeni = a + " " + b
+
+print(yeni) # Yine Merhaba Dünya sonucu çıkacaktır
+```
+
+Stringlerde değer atama, tırnaklar içindeki verileri baz alır. Yani 
+
+```py
+merhaba = "merhaba"
+```
+
+dediğimiz zaman aslında adı merhaba olan ve içinde merhaba şeklinde bir metin bulunduran bir kutu oluşturup bunu hafızaya yerleştiriyoruz.
+
+## `len()` kullanımı
+
+`len()` fonksiyonu aslında sadece karakter dizilerinde değil, listeler ve daha birçok yerde karşımıza çıkacak. Dediğimiz gibi aslında stringler birer dizi olduğu için len kullanabiliriz. `len()` fonksiyonunun olayı, elimizdeki bir listenin uzunluğunu vermektir. Örneğin:
+
+```py
+a = "dünya"
+print(len(a)) # 5 değeri döner
+```
+şeklinde bir kod yazarsak çıktımız 5 olacaktır. Yani bize a değişkenindeki ifadenin ("dünya") 5 karakterden oluştuğunu söylemektedir. Peki tamamen boşluk olsa ne olurdu?
+
+```py
+a = 5 * " "
+print(len(a))
+```
+Hiçbir şey değişmezdi. Sonuç yine 5 olarak dönerdi çünkü boşluk da aslında anlamlı bir karakterdir.
+
+<Admonition type="info" icon="?" title="PEKİ NASIL OLUR">
+  <p>
+    <code>len()</code> fonksiyonuna yeni satır işaretçisi giderse kaç karakter döner?
+  </p>
+</Admonition>
+
+
+## Elemanlara Erişme (İndeksleme)
+
+Stringler de bir seri olduğu için içindeki elemanlara erişebiliriz.
+
+:::info BİLGİ
+
+Kapsayıcı bir yapının içindeki elemanlara erişme işlemine indexing denir
+
+:::
+
+Stringler içinde elemanlara erişmek istiyorsak yapmamız gereken `stringeatanandegisken[sayi]` ifadesini kullanabiliriz. Bunu örnekle anlamak daha kolay olacaktır.
+
+```py
+ismim = "Furkan"
+ismimin_ilk_harfi = ismim[0]
+print(f"İsminiz {ismimin_ilk_harfi} harfi ile başlıyor") # İsminiz F harfi ile başlıyor
+```
+
+Burada bilgi vermemiz gerekirse bir dizi içindeki en büyük indeks, dizinin uzunluğunun bir eksiğidir. Yani 5 elemanlı bir dizi varsa elimizde en büyük indeks 4'tür. Peki neden? 
+
+:::info BİLGİLENDİRME
+
+Python da birçok programlama dili gibi 0-index kuralı ile ilerler. Yani diziler birinci sıradan başlamaz, sıfırıncı sıradan başlar. Yani sıfırıncı indeks aslında ilk elemandır. Bunu doğal sayılar ile aynı mantıkta düşünebiliriz. Nasıl ki doğal sayılardaki ilk değer 0 ise burada da ilk indeks sıfır gelir. 
+
+Bir diğer örnek asansör olabilir. Zemin kat, yani asansörün ilk erişeceği kat 0 olarak geçerken diğerleri normal artarak gider.
+
+:::
+
+İkinci elemana erişmek istiyorsak [1], üçüncü eleman için [2] şeklinde gitmemiz gerekiyor. Peki son elemana nasıl erişeceğiz? Ya da tersten gelmemiz gerekiyorsa ne yapacağız? İşte Python buna da bir çözüm sunmuş. Negatif indeksler!
+
+```py
+name = "Furkan"
+first_letter = name[0]
+last_letter = name[-1]
+print(f"İlk harfimiz {first_letter} iken son harfimiz {last_letter} oldu")
+```
+Burada düz ilerlerken sıfır ilk karakter olur, ancak ters gelirken -1,-2,-3 şeklinde gidebiliriz. Yani Furkan ismi için `name[-6]` ifadesi bana F harfini döndürür. Yani sondan n'inci karakteri bulmak için `degisken[n]` ifadesini kullanabiliriz.
+
+:::danger DİKKAT
+
+Eğer burada indeks değeri dizimizle aynı uzunlukta veya dizimizin uzunluğundan daha büyük olursa o zaman hata alırız. Aşağıdaki kodu çalıştırarak deneyebiliriz.
+
+```py
+name = "Furkan"
+error_index = name[6]
+print(error_index)
+```
+
+Alacağımız hata 
+
+```plain 
+IndexError: string index out of range
+```
+
+olacaktır.
+
+:::
+
+Mesela yukarıda stringler için immutable yani değiştirlemez demiştik. İşte size bir örnek
+
+```py
+name = "İrem"
+name[0] = "G"
+```
+
+Bu kısımda hata alacaksınız. 
+
+
+## String Bölme (Slicing)
+
+Stringlerin içerisinden bazı kısımları almamız gerekebilir. Peki biz bunları nasıl seçeceğiz? İşte Python yine bir kolaylık ile geliyor. 
+
+Diyelim ki biz elimizdeki ismin uzunluğunu biliyoruz ve ilk üç harfi lazım. O zaman yapmamız gereken işlem şudur:
+
+```py
+name = "İrem"
+first_three_letters = name[0:3]
+```
+
+Burada matematikteki dahil hariç olayı gibi bir düşünceye girebiliriz. Yani ilk harften üçüncü harfe kadar olacak şekilde kapalı-açık bir aralık vardır. Önceden dediğimiz gibi bizde indeks sıfırdan başladığı için 0,1,2 indeksleri demek asında birinci, ikinci ve üçüncü karakter demektir. İki noktanın sağına yazdığımız ifade alınmayacağı için bize "İrem" yerine "İre çıktısı verecektir." Yani ilk n karakteri görmek istiyorsak `degisken[0:n-1]` olayı uygulanır.
+
+Peki sadece ilk karakter hariç diğerlerini görmek istersem? O da basit.
+
+```py
+name = "Uzuncabirismimvarbenim"
+print(name[1:])
+```
+
+Yani diyoruz ki benim elimdeki diziyi ikinci karakterden başlat ve sonsuza dek git. Burada sistem sonsuza kadar giderken dizinin son karakterinden sonrasını aşamayacağı için aslında dizinin son karakterine kadar git demek istiyoruz. Çıktımız "zuncabirismimvarbenim" olacaktır. 
+
+Aynı durum son karakter için de geçerlidir. Son karakter hariç eğer diğer tüm karakterleri almak istiyorsak
+
+```py
+name = "Furkan"
+print(name[:-1])
+```
+
+Bu demek oluyor ki ilk baştan başla ve son karakteri görene kadar devam eder. Son karaktere gelmeden hemen önce dur demek. Bu durumda çıktımız "Furka" olacaktır.
+
+Slicing içinde bir olay daha var. Diyelim ki size 0'dan 9'a kadar olan bir liste verdiler ve dediler ki bize tek sayıları bul. Biz bu tek sayıların birer birer atlayarak geldiğini biliyorsak bunu rahatça yapabiliriz. Tek yapmamız gereken üçüncü bir eleman eklemek.
+
+```py
+serim = "0123456789"
+print(serim[1::2])
+```
+
+Ne demek istedik?
+- Öncelikle ilk karakteri atla ve sonraki karakterden başla [1]
+- Son karakteri görene kadar çalış [::] 
+- Karakterleri ikişer ikişer atlayarak gel. Yani verilen aralıktaki ilk karakteri yazıp sonraki karakteri yazmadan diğerine atla. [2]
+
+Bu durumda çıktım "13579" olacaktır. Aynı işlemi çift sayılar için de yaparız. Peki nasıl?
+
+:::info BİLGİLENDİRME
+
+Burada normalde uzunluğun ötesinde bir son indeks verirseniz Python hata vermeyecektir. Yani üstteki ifadeyi düşünün. Normalde bir son değer vermemiştik. Ancak şimdi çok büyük bir son indeks verelim.
+
+```py
+serim = "0123456789"
+print(serim[0:100:2])
+```
+
+Normalde serimizde 100 karakter yok ancak biz yüzüncü indekse kadar git dedik. Python burada son karakterden sonrasını aşmak istemeyeceği için serimizin son karakterini sınır olarak belirleyecek ve sorunsuz çalışacaktır.
+
+:::
+
+Bölme veya dilimleme işlemi tersine çalışma imkanı da sağlamaktadır. Yani dilersek tüm listeyi sondan başa yazabiliriz. Tek yapmamız gereken başlangıç ya da bitiş indekslerini vermemek.
+
+```py
+serim = "0123456789"
+print(serim[::-1])
+```
+
+Bu durumda çıktım "9876543210" olacaktır. Dilersem burada üst ve alt sınır vererek ters yazacağı kısımları da belirtebilirim. 
+
+```py
+serim = "0123456789"
+print(serim[6:0:-1])
+```
+
+:::warning DİKKAT
+
+Burada 0:6 yerine 6:0 verdik. Çünkü Python ters işlem yapacağı için başlangıç olarak son karakteri baz almak ister. Yani önceki işlemlerde nasıl başlangıç karakterini baştan alıp geldiysek bu sefer başlangıç karakterini sondan almamız gerekecek.
+
+:::
