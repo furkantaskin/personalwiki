@@ -123,7 +123,7 @@ print("Deneme", a, b, "Bir diğer deneme", "Şaka", 10, 3.14)
 
 Çıktımız sorunsuz bir şekilde gelecektir.
 
-### Özel Ayırma Karakteri Kullanma (`sep`)
+### Özel Ayırma Karakteri Kullanma (`sep`) {#separator}
 
 Normalde Python `print()` fonksiyonunda varsayılan olarak boşluk karakteri kullanarak birden fazla argümanı ayırır. Biz dilersek bunu değiştirebiliriz. Mesela kısa çizgi kullanmamız gereken bir durum olduğunu düşünelim. Bunu `print("Furkan", "-", "Taşkın")` olarak yaparsak çıktımız "Furkan - Taşkın" olacaktır ve yine boşluk kalacaktır. Boşluklardan kurtulmak için `print()` fonksiyonunda şöyle bir işlem yapabiliriz.
 
@@ -236,6 +236,34 @@ print(f"Merhaba. Ben {name}{surname}. Boyum {height} metreyken yaşım {age} ve 
 ```
 Artık çok rahat bir şekilde ve okunabilir şekilde ekrana çıktımızı verebiliriz. Burada yapmamız gereken olay süslü parantezler içine değişken adlarımızı yazmak.
 
+Peki float ifadeler nasıl yazılacak? Örneğin 1/3 ifadesinin sonucunu yazmak istedik ve bize 1.33333333.. şeklinde uzun bir sonuç verdi. İşte burada da float formatlama işin içine giriyor. Kullanımı çok kolay
+
+```py
+res = 1/3
+print(f"1/3 işleminin sonucu {res:.3f} şeklindedir")
+```
+
+Yukarıdaki işlemde `res:.3f` ifadesi gördük. Bu demek istiyor ki:
+> Benim tanımlı olan değişkenim res'in değerine bak. Burada noktadan sonra sadece üç basamağı yaz ve gerisini bırak gitsin. Yani çıktıyı 1.33333 yerine 1.333 yap
+
+Bunu sadece değişkenlerle kullanmak zorunda değiliz. Diyelim ki pi değerinin ilk 8 basamağını biliyoruz ama bize noktadan sonraki iki basamak lazım.
+
+```python
+print(f"Pi sayısının değeri genede {3.14159265359:.2f} olarak alınır" )
+```
+
+Buranın çıktısında o uzun ifade görmezden gelinip sadece noktadan sonraki iki basamak yani 14 ifadesi alındı. İşlemleri de direkt olarak burada hesaplayabiliriz.
+
+```py
+print(f"2 sayısı üçe bölünürse sonuç {(2/3):.2f} olacaktır")
+```
+
+:::caution BİLMEKTE FAYDA VAR
+
+Normalde float formatlama işlemi son basamakları silip atmaz. İşlemi yaparken son gönderdiğimiz basamak ne ise o basamaktan sonarsını yuvarlar. Örneğin 2/3 işlemi normalde 0.6666666667 diye giderken bizim kodumuzda 0.67 olacaktır çünkü yuvarladı. Aynı durum pi değeri için de geçeridir. Dilerseniz pi değerini yazdırdığımız kodda `.2f` kısmını `.4f` yapın ve sonucun ne olduğunu görün.
+
+:::
+
 ## `input()` Fonksiyonu
 
 Kullanıcıya bir şeyler göstermeyi öğrettik. Peki kullanıcıdan nasıl veri alacağız? İşte burada da bir diğer gömülü fonksiyon olan `input()` fonksiyonu işin içine girecek. 
@@ -304,6 +332,28 @@ print(f"Siz {name + surname} olmalısınız")
 # Ancak burada boşluk gelmediğini gördük.  Bu durumda geleneksel yöntemi deneyebiliriz.
 # print("Siz", name, surname, "olmalısınız")
 ```
+
+`input()` fonksiyonu içinde de birden fazla değer alma olayı vardır. Bunun için `split()` metodu kullanırız.
+
+```py
+x,y = input("İki değer verin").split()
+print(f"X değeri {x} iken Y değeri {y} oldu")
+```
+Burada `split()` metodu aslında arada boşluğu baz alarak değerleri birbirinden ayırır. Eğer siz boşluk atmazsanız o kısma kadar yazdığınız her şey x değeri içine girecektir. Dilerseniz burada özel bir ayırıcı kullanabilirsiniz. Mesela iki değeri kısa çizgi (-) ile ayırmak istiyorsanız
+
+```py
+x,y,z,t = input("Dört değer verin").split("-")
+print(x,y,z,t)
+```
+Buradaki kısa çizgi gelene kadar girilen her şey o anki değişkene gidecektir. Yani diyelim ki biz girdi olarak 
+
+```plain
+  121323"merhaba",3.14 selam, şaka mı, 5, True - 2 - 3 - 4
+```
+
+şeklinde bir girdi verirsek x değeri `121323"merhaba",3.14 selam, şaka mı, 5, True ` ifadesine karşılık gelecektir. Burada boşlukları da içine dahil etmektedir.
+
+## Alıştırmalar
 
 
 [^1]: Python `*objects` kelimesinde aslında bir bilgi bulunduruyor. Biz bundan bahsetmesek de aslında her şey birer objedir. Hatırlarsak `type()` fonksiyonu bize içinde class geçen bir değer döndürüyordu. Obje dediğimiz kavram içinde bir verinin yanı sıra kendisine bağlanmış çeşitli işlevsellikler barındıran bir varlıktır. Yani günümüzde bir araba nasıl nesne ise ve kendine has özellik ile işlevsellikleri varsa Python içinde de nesneler aynı mantıktadır."

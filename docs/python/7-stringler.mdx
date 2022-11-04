@@ -204,3 +204,159 @@ print(serim[6:0:-1])
 Burada 0:6 yerine 6:0 verdik. Çünkü Python ters işlem yapacağı için başlangıç olarak son karakteri baz almak ister. Yani önceki işlemlerde nasıl başlangıç karakterini baştan alıp geldiysek bu sefer başlangıç karakterini sondan almamız gerekecek.
 
 :::
+
+## String Metodları
+
+Stringler kendi içerisinde çok sayıda metod barındırmaktadır. Bu metodların bazıları karakter dizilerine özelken bazı metodları da listelerde veya diğer veri yapılarında da sıkça kullanacağız. 
+
+Metod kullanımı `degiskenveyastringifade.metodadi()` şeklindedir
+
+### İlk Harfi Büyütme (`capitalize()`)
+
+Elimizdeki metnin ilk harfini büyük yapar. Örneğin elimizde bir isim olsun:
+
+```py
+name = "furkan"
+print(name.capitalize()) # Çıktımız Furkan olacaktır
+```
+
+### Metin İçinde Harf Arama (`find()`)
+
+Örneğin elimizde çok sayıda isimden oluşan bir karakter dizisi var. Ya da bir metin içinde belirlediğimiz harf var. Bunun ilk nerede karşımıza çıktığını görmek istiyoruz. Burada `find()` metodu kullanabiliriz.
+
+```py
+name = "Furkan"
+print(name.find("a"))
+```
+
+Sonuç bize bir sayı olarak dönecektir. Buradaki sayı, a harfinin Furkan kelimesinde ilk nerede görüldüğünü söyleyecektir. Bu sadece harf değil birden fazla harf ya da kelime de olabilir. Yani string içinde string var mı diye kontrol etmek gibi düşünebilirsiniz.
+
+```py
+name = "Furkan"
+print(name.find("Fur"))
+print(name.find("ka"))
+print(name.find("Furkan"))
+```
+Eğer aradığımız ifade hiç yoksa o zaman -1 değeri dönecektir.
+
+
+### Metin İçinde Metin Saydırma (`count()`)
+
+Örneğin bir metinde a harfinin kaç tane kullanıldığını merak ediyoruz. Bunu `.count()` metodu ile yapabiliriz.
+
+```py
+name = "Incomprehensibilities"
+print(name.count("i"))
+```
+
+Burada her ne kadar İngilizce'de i harfinin büyük hali olan I harfi aynı olaya karşılık gelse de Python bunu anlamaz. Çünkü Python için her karakter farklı bir Unicode değere sahiptir. 
+
+Unicode table için [tıklayınız](https://unicode-table.com/en/)
+
+
+### `print()` içinde String Formatlama (`format()`)
+
+Bir çıktı verirken `print()` fonksiyonu içinde string ifadeyi formatlayabiliriz. Örneğin
+
+```py
+name = "Furkan"
+surname = "Taşkın"
+
+print("Adınız {} ve soyadınız {}".format(name,surname))
+# Adınız Furkan ve soyadınız Taşkın
+
+```
+
+Dilersek burada süslü parantez içine sayı da verebiliriz.
+
+```py
+print("Adınız {0} ve soyadınız {1}".format(name,surname))
+```
+
+Buradaki ilk değer 0'dan başlamalıdır. Bunun sebebine ileride değineceğiz.
+
+Bu kullanımın çok benzerini [print](./6-print.mdx) içinde görmüştük. Genel kullanımı aynıdır ancak Python 3'ten sonra f-string metodunun kullanılması önerilmektedir. 
+
+### Sağdan ve Soldan Karakter Temizleme (`strip()`)
+
+Python içerisinde dizinin başından veya solundan değer temizleyebiliriz.
+
+```py
+desc1 = "selamlars"
+print(desc1.strip("s"))
+
+desc2 = "     Merhabalar     "
+print(desc2.strip())
+
+
+desc = "trying somethiiiinnng"
+# This will active
+print(desc.strip("trying"))
+```
+
+Dilersek sadece baştaki veya sondaki ifadeleri de temizleyebiliriz.
+
+```py
+name = "traş şart"
+print(name.strip("tr"))
+# This will active
+print(name.lstrip("tr"))
+# This will active
+print(name.rstrip("tr"))
+```
+
+### String İçinde Yazı Değiştirme (`replace()`)
+
+Dilersek string içindeki bir yazıyı değiştirebiliriz. Örneğin `print()` fonksiyonunu anlatırken [özel ayırma karakteri](./6-print.mdx#separator) kullanımını anlatmıştık. Bu sadece çıktıda çalışmaktaydı. Dilersek bunu çıktı içinde değil normal string için de yapabiliriz.
+
+```py
+text_to_telegraph = "Burası çok güzel. Bir şeyler denerken çok zevkli. Mesela. Burada. Nokta. Var."
+print(text_to_telegraph.replace(".", "Stop"))
+# This will active
+print(text_to_telegraph.replace(".", " Stop"))
+```
+
+### String'i Listeye Çevirm (`split()`)
+
+Normalde görmesek de bazı durumlarda string ifadeleri liste yapmamız gerekebilir. Bunu şu şekilde yaparız.
+
+```py
+uzun_cumle = "Ornek bir cumle ile burada bir şeyler deniyorum"
+print(uzun_cumle.split())
+
+bir_diger_cumle = "Sen,ben,o,biz,siz,onlar"
+print(uzun_cumle.split(","))
+```
+
+En son elimizdeki metin bir listeye dönüşecektir. Bu metod varsayılan olarak boşluk karakterini alır.
+
+
+### String İçinde Büyük-Küçük Harf Değiştirme (`upper() - lower() - swapcase()`)
+
+String içinde dilersek harfleri büyük ya da küçük yapabiliriz.
+
+```py
+name = "Furkan Taşkın"
+print(name.upper())
+print(name.lower())
+print(name.swapcase())
+```
+
+## String İçinde Birden Fazla Metod Kullanma
+
+String içinde birden fazla metodu arka arkaya kullanabiliriz. Örneğin tüm harfleri büyük yapmanın bir diğer yöntemi şöyledir
+
+```py
+name = "   aaaFurkan Taşkınaaa   "
+# This will error
+print(name.lower().swapcase().strip().lstrip("a").rstrip("a"))
+
+print(name.lower().swapcase().strip().lstrip("A").rstrip("A"))
+```
+
+## Alıştırmalar
+
+1. Örnek olarak "Furkan" ismini ya da kendi isminizi baştan başlayıp birer harf atlayarak yazan programı yazınız. (Furkan için çıktı "Fra" olacak)
+2. **Şu an için**: Tek sayılı bir isim (5 harfli veya 7 harfli) için ismin ortadaki üç karakterini bulup ekrana yazan programı yazınız.
+3. **Şu an için**: Çift sayılı bir isim (6 harfli ya da 8 harfli gibi) için bu ismi ikiye bölen ve ortaya yeni bir isim ekleyen programı yazınız. (Örneğin Furkan ismini ikiye bölüp ortaya Ali ismini ekleyen program:  "FurAlikan" çıktısı olacak)
+4. Büyük küçük karakter fark etmeksizin bir metin içinde verilen kelimeyi arayan bir program yazınız (Örneğin "Türkiye çok güzel ama bazıları Türkiye'nin T'sini küçük yazarak TÜRKİYE'de faaliyet gösteren ve türkçe üzerine çalışan Türk Dil Kurumu'nun kaidelerini hiçe sayıyor" bu cümlede Türk ifadesi kaç defa keçiyor)
