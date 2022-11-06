@@ -33,4 +33,15 @@ Normalde numerik ifadelerde çok vakit kaybetmek doğru olmaz. Bildiğimiz matem
 
 ### String İfadelerde Karşılaştırma
 
-String ifadeler aslında karışık bir yapı içermektedir. Python inceleme yaparken harflerin tıpkı alfabedeki sıralamasını baz 
+String ifadeler aslında karışık bir yapı içermektedir. Python inceleme yaparken harflerin tıpkı alfabedeki sıralamasını baz alır. Noktalama işaretleri burada harflerden küçük gelmektedir. Örnekleri incelemekte fayda var.
+
+```py
+"a" < "b" # "True"
+"a" < "ab" # True
+"ab" < "ac" # True
+"a" < "." # False 
+```
+
+Stringler içinde öncelikle ilk harfler karşılaştırılır. Burada eğer tablo içerisindeki numerik değeri diğerinden küçükse olay biter. Ama ilk harfler aynı ise ikinci harflere bakılır. Diğer elemanın yoksa eğer o zaman fazla harf içeren büyüktür. Ancak ikisinde de iki harf varsa bu durumda yine karşılaştırılır. 
+
+
