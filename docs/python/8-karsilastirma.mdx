@@ -4,6 +4,9 @@ custom_edit_url: null
 description: "Karşılaştırma ve mantıksal operatörler ile koşullu işlemler"
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Operatörler ve Koşullu İşlemler (if-else)
 
 Artık yavaş yavaş Python içine giriş yapabiliriz.
@@ -44,4 +47,201 @@ String ifadeler aslında karışık bir yapı içermektedir. Python inceleme yap
 
 Stringler içinde öncelikle ilk harfler karşılaştırılır. Burada eğer tablo içerisindeki numerik değeri diğerinden küçükse olay biter. Ama ilk harfler aynı ise ikinci harflere bakılır. Diğer elemanın yoksa eğer o zaman fazla harf içeren büyüktür. Ancak ikisinde de iki harf varsa bu durumda yine karşılaştırılır. 
 
+Diyelim ki elimizde iki metin var. Birisi diğerinden daha uzun. Bu durumda değişen olmaz ve yine adım adım gider. Örneğin `"abz" < "ac"` ifadesi yine True dönecektir.
 
+:::warning ÖNEMLİ
+
+Python bu kısımda karşılaştırma yaparken numerik ifadeleri kendi arasında ve string ifadeleri de kendi arasında değerlendirir. Bu durumda `"a" < 5` ifadesi hata verecektir. 
+
+- Numerik ifadeler kendi arasında (int-int veya int-float)
+- String ifadeler kendi arasında
+- Bool ifadeler kendi arasında (Örn: `False < True` ifadesi True dönecektir)
+
+:::
+
+## Kimlik ve Üyelik (Identity and Membership) Operatörleri
+
+Bundan öncesinde karşılaştırma operatörlerini görmüştük. Artık kimlik ve üyelik operatörlerini tanıyalım.
+
+### Kimlik Operatörleri
+
+Kimlik operatörleri değerleri karşılaştırmak yerine referans karşılaştırması yapar. Bunu detaylıca göreceğiz.
+
+İşaret olarak karşılaştırmanın yanı sıra Python içinde `is`, `not`, `in` ifadeleri de karşılaştırma için kullanılabilir. Gelin mantığını inceleyelim
+
+`is` ifadesi bildiğimiz `==` ile yakın mantıkta çalışırken burada çok kritik bir farkı vardır ve `==` operatöründen daha hızlı çalışır. Mesela şu kodu düşünelim
+
+
+<Tabs>
+  <TabItem value="is" label="`is`" default>
+
+```python
+a = 2
+b = 2
+
+print(a == b)
+```
+
+  </TabItem>
+  <TabItem value="equal" label="`==`">
+
+```py
+a = 2
+b = 2
+
+print(a is b)
+```
+  </TabItem>
+</Tabs>
+
+:::tip trivia
+
+Normalde `a == b` ifadesi değerlerin eşitliğini sorgularken is ifadesi referans sorgulaması yapar. Aslında `a is b` ifades `id(a) == id(b)` yaparak kontrol eder. Direkt olarak hafıza adresleri karşılaştırıldığı için `is` operatörü `==` operatörüne göre daha hızlı olacaktır. En basit örneği ile 
+
+- `==` operatörü: 0.0020 saniyede işlem yapar
+- `is` operatörü: 0.0005 saniyede işlem yapar
+
+:::
+
+
+Özetlemek gerekirse `is` ifadesi aslında `==` gibi çalışır. Örnek olarak
+
+```py
+a = 3
+b = 3
+
+print(a is b) # True dönecektir
+```
+
+`not` ifadesi ise bizim `!=` ile aynı mantıkta gidecektir. Tıpkı `is` ifadesi gibi çalışarak işlem yapar. Burada ise dönebilecek cevabın tam tersini arar. Örnek olarak
+
+```py
+a = 3
+b = 3
+
+print(a is not b) # False döner
+```
+
+Normalde önceki örnekte `a is b` demiştik. Bu demek oluyor ki a aslında b'nin kendisi. Yani değerleri aynı. Bunu şu şekilde adımlayabiliriz.
+
+- Elimde iki tane 3 sayısı var
+- `is` kullanarak bu iki sayının birbirinin aynısı olduğunu söylüyorum
+- Doğru söylüyorum
+- True döner
+
+Tam tersini ilerletelim
+
+- Elimde iki tane 3 sayısı var
+- `is not` kullanarak bu iki sayının birbiri ile alakası olmadığını söylüyorum
+- Söylediğim şey hatalı
+- False döner
+
+Yani `is not` ifadesi `is` ile dönen değerin tam tersini döndürür. Bunun sebebi `not` ifadesidir. Bu operatör sadece `is` ile değil `in` ile de kullanılır.
+
+:::warning ÖNEMLİ
+
+`print(4+5 is 6+3)` ifadesi bize ilginç bir hata döndürecektir. Merak edenler [bu adresten](https://adamj.eu/tech/2020/01/21/why-does-python-3-8-syntaxwarning-for-is-literal/) sebebini araştırabilir
+
+:::
+
+### Üyelik Operatörleri
+
+Üyelik operatörler burada elimizdeki verinin bir veri kümesi içinde olup olmadığını inceler. Örneğin öğrenci listesi düşünelim
+
+- Bengisu
+- Emirhan
+- Halil İbrahim
+- Metehan
+- Yusuf
+
+Bir de elimizde Furkan'ı düşünelim. Furkan bu öğrenci listesi **içinde** yer alıyor mu? Hayır. İşte üyelik operatörleri de aynı mantıkta ilerler.
+
+```py
+harf = "F"
+
+ogrenci = "İçinde malum değişkeni barındırmayan bir metin"
+
+print(harf in ogrenci)
+```
+Bunun çıktısı bize False olarak dönecektir çünkü mevcut metnimiz içinde F harfi yoktur. Üstteki adımları yine izleyelim
+
+- Benim bir metnim ve harfim var
+- Bu harfim bu metnin içinde var diyorum
+- Sistem ise "Yanlış düşünüyorsun, böyle bir harf yok" diyor
+- False döner
+
+Peki zaten yok dersek ne olur?
+
+```py
+harf = "F"
+
+ogrenci = "İçinde malum değişkeni barındırmayan bir metin"
+
+print(harf not in ogrenci)
+```
+
+Bu sefer de adımları izleyelim
+
+- Benim bir metnim ve harfim var
+- Bu harfim bu metnin içinde yok diyorum
+- Sistem ise "Doğru düşünüyorsun, böyle bir harf yok" diyor
+- True döner
+
+Aynı kimlik operatörleri gibi `not` burada `in` operatöründen gelen değeri ters çevirir.
+
+
+## Mantık Operatörler 
+
+Bizim matematik içinde gördüğümüz ve veya tarzı ifadeleri içerir. 
+
+- `and`: Matematikteki ve ifadesidir. İçinde False olması durumunda False döner
+- `or`: Matematikteki veya ifadesidir. İçinde True olması durumunda True döner
+- `not`: `and` veya `or` içinden dönen değeri ters çevirir.
+
+Matematikteki bu tabloyu bir hatırlayalım.
+
+
+| Değer 1 | Değer 2 | Ve (and) | Veya (or) |
+| :---: | :---: | :---: | :---: |
+| True | False | False | True |
+| True | True | True | True |
+| False | False | False | False |
+| False | True | False | True |
+
+
+Mesela elimizdeki sayının 0 mı olduğunu bulmak istiyoruz
+
+```py
+x = 0
+print(x > -1 and x < 1)
+```
+
+Buradan bize True dönecektir ve sayımızın 0 olduğunu anlayabiliriz.
+
+
+## Kısa Devreler
+
+Hızlı bir şekilde işlem yapmamızı sağlar. Örnek olarak
+
+| İşlem | Sonuç | Açıklama | 
+| :---: | :---: | :---: |
+| X or Y | Eğer X False dönerse Y <br/> Eğer X True ise X | Burada ilk değerden True gelirse sistem direkt olarak onu çalıştırır. Diğer durumda Y değerini de inceleyerek bir karar verir |
+| X and Y | Eğer X False dönerse X <br/> Eğer X True dönerse Y | Eğer X True dönerse bu durumda Y durumu çalışacaktır, aksi taktirde X False olursa X çalışacaktır. |  
+
+Mesela sıcaklık 20 derece altına inmedikçe kullanıcıya uyarıda bulunmak istemiyoruz.
+
+```py
+x = 10
+x < 20 and print("Hava soğuk")
+```
+
+Çıktımız hava soğuk olacaktır. Peki nasıl
+
+Şunu biliyoruz. 
+
+Normalde "ve" tablosunda 1 etkisiz elemandır. Yani 0 geldiği an anlamı yoktur. 0 ise kritik elemandır. Geldiği an sağında ne olursa olsun işlem biter. 
+Normalde "veya" tablosunda 0 etkisiz elemandır. Yani 1 geldiği an anlamı yoktur. 1 ise kritik elemandır. Geldiği an sağında ne olursa olsun işlem biter.
+
+Kısa devreler ile eğer `X or Y` işleminde X değerine etkisiz eleman gönderirsek Y işlemi çalışır. X değerine kritik eleman gönderirsek X çalışır ve Y geçersiz kalır. 
+
+## If-Else Yapısı
