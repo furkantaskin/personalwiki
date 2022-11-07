@@ -237,7 +237,7 @@ x < 20 and print("Hava soğuk")
 
 Çıktımız hava soğuk olacaktır. Peki nasıl
 
-Şunu biliyoruz. 
+Şunu biliyoruz.
 
 Normalde "ve" tablosunda 1 etkisiz elemandır. Yani 0 geldiği an anlamı yoktur. 0 ise kritik elemandır. Geldiği an sağında ne olursa olsun işlem biter. 
 Normalde "veya" tablosunda 0 etkisiz elemandır. Yani 1 geldiği an anlamı yoktur. 1 ise kritik elemandır. Geldiği an sağında ne olursa olsun işlem biter.
@@ -245,3 +245,60 @@ Normalde "veya" tablosunda 0 etkisiz elemandır. Yani 1 geldiği an anlamı yokt
 Kısa devreler ile eğer `X or Y` işleminde X değerine etkisiz eleman gönderirsek Y işlemi çalışır. X değerine kritik eleman gönderirsek X çalışır ve Y geçersiz kalır. 
 
 ## If-Else Yapısı
+
+Geliyoruz işin en heyecanlı kısmına. Kontrol akışları. Normal şartlar altında biz direkt olarak koşulsuz şartsız işlem yapmayı öğretmiştik ancak gerçek hayat böyle değil. Şöye düşünelim:
+
+Siz suyu kaynamadan çayı demlerseniz ve daha su kaynamadan çayı doldurursanız içtiğiniz şey çay değil çay aromalı su olacaktır. İşte gerçek hayatta da aynı şekilde işlemleri direkt olarak yapamayabilirsiniz. Bazı kontrollerden geçmek gerekir.
+
+Peki kontrol akışı nasıl çalışır? 
+
+[![](https://mermaid.ink/img/pako:eNo9UDsOgzAMvYrloRNcgEodqnbs1G6EwSVuQSEJCkklhDgUd-BgDVA6-fl9JD8PWFrJmOHbUVvB43wUTpgu5F3oAyhrvLMNsC_S9NTNU0kqKrAh0PO08MAf9nCAivp5ckt-IaIgWTe87JsSGUW9IU35b0YWnqwaLnY3JqjZaaplvGkQBkCgr1izwCxCSU4JFGaMvtBK8nyVtbcOsxc1HSdIwdt7b0rMvAu8my41xX767-I1dNuarw8Yv3ueYP0?type=png)](https://mermaid.live/edit#pako:eNo9UDsOgzAMvYrloRNcgEodqnbs1G6EwSVuQSEJCkklhDgUd-BgDVA6-fl9JD8PWFrJmOHbUVvB43wUTpgu5F3oAyhrvLMNsC_S9NTNU0kqKrAh0PO08MAf9nCAivp5ckt-IaIgWTe87JsSGUW9IU35b0YWnqwaLnY3JqjZaaplvGkQBkCgr1izwCxCSU4JFGaMvtBK8nyVtbcOsxc1HSdIwdt7b0rMvAu8my41xX767-I1dNuarw8Yv3ueYP0)
+
+Normalde çayı demlekmek için belirli şartların oluşması gerektiğini anladık. Bunu günlük hayattan da düşünebiliriz, 18 yaşına gelmeden oy kullanmak veya ehliyet almak gibi çeşitli haklara sahip olamıyoruz. Sizin bir sisteminiz var ve 18 yaşından küçüklerin işlem yapmasını istemiyorsunuz. Peki kontrol şeması olmasa ne olurdu? Dört yaşındaki bir birey için bile işlem yapılabilirdi. İşte bu tür durumlar için if-else yapısı kullanıyoruz. Gelin örnek kodu inceleyelim
+
+```py
+yas = int(input("Yaşınız nedir: "))
+
+if yas > 18:
+  print("Ehliyet alabilirsiniz")
+```
+
+Her şey çok güzel. Artık 18 yaşından büyük olanlar için bildirim verebiliyoruz. Sadece bunu değil, 18 yaşından büyük bireyler veya kimliğinin son hanesi 1 ile bitenleri kontrol etmek istediğimizi düşünelim. İşte bunu da kolayca yapabiliyoruz.
+
+```py
+yas = int(input("Yaşınız nedir: "))
+kimlik = input("T.C. Kimlik Numaranızı Yazınız: ")
+
+if yas > 18 or kimlik[-1] == "1":
+  print("Ehliyet alabilirsiniz")
+```
+
+Python burada if ifadesini gördüğü an gerekli bloğu kontrol eder ve şartları değerlendirir. Aslında burada yaptığımız işlemler yukarıdaki operatörlerin mantığında ilerler. `yas > 18 ` ifadesi True döner ve `kimlik[-1]=="1"` ifadesi de True döner. Önceki konuya istinaden `True or True` sonucuna ulaşacağımız için sonuç True olacaktır ve sistem if bloğu içindeki kodu çalıştırır. Her şey çok güzel gidiyor. Ancak burada 15 yaşında ve kimlik numarası 1 ile bitenler de ehliyet alabiliyor. Tabloya istinaden `True or False` durumu True dönecektir. Bu sorun demektir. Bunu da yine önceki gördüğümüz konuya istinaden güncelleyebiliriz.
+
+```py
+yas = int(input("Yaşınız nedir: "))
+kimlik = input("T.C. Kimlik Numaranızı Yazınız: ")
+
+if yas > 18 and kimlik[-1] == "1":
+  print("Ehliyet alabilirsiniz")
+```
+
+Ancak bizim için önemli olan `True and False` durumunda hata döndürmek. 
+
+Peki her zaman if yeterli olacak mı? Tabii ki de hayır. Mesela ehliyet alabileceklerini söyledik ama ehliyet alamayacaklar için de bilgilendirmede bulunmamız lazım. Onu da else ile yapıyoruz.
+
+```py
+yas = int(input("Yaşınız nedir: "))
+kimlik = input("T.C. Kimlik Numaranızı Yazınız: ")
+
+if yas > 18 and kimlik[-1] == "1":
+  print("Ehliyet alabilirsiniz")
+else:
+  print("Ehliyet hakkınız bulunmamaktadır")
+```
+
+`else` bloğunun mantığı şöyledir:
+
+- `if` bloğunu kontrol eder. Şartlar incelenir ve eldeki veriler ile karşılaştırılır.
+- Bu şart sağlanıyorsa sistem bu şartın getirdiği işlemleri yapar
+- Eğer şartlar sağlanmıyorsa sistem aşağı iner. Burada göreceği else, if ifadesinin çalışmadığı anda direkt olarak çalışır.
