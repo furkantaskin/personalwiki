@@ -573,6 +573,28 @@ print("Sayınız pozitif") if sayi > 0 else print("Sayınız negatif") if sayi <
 
 :::
 
+## Ailenin Yetimi: `assert`
+
+Bu konuda sizin kafanızı ağrıtmak istemem ama bazı durumlarda kodumuzu kontrol etmek büyük fayda sağlayacak ve sistemi direkt olarak durdurmamız gerekebilecektir. Eğer kodunuzu ileride test etmek ve gelecek değerleri görmek isterseniz `assert` ifadesi çok iş görecektir. Peki nedir?
+
+Normalde if-else yapısında bir kodu çalıştırınca ifadenin kontrol edildiğini, tutmadığında else arandığını ve else içine girdiğini görmüştük. Diyelim ki arkadaşımız bir sistem hazırladı ve biz bu sistemin doğru çalışıp çalışmadığını merak ediyoruz. Mesela ekip arkadaşımız telefon no girilen yere ilk değerin 0 olması gerektiğine dair kontrolü koydu mu bilmiyoruz. Burada bir test yapmak istedik. Şu şekilde yaparız
+
+```py
+telefon = "15437727461"
+
+assert telefon[0:2] == "05", "Telefon numarası kontrolünde hata var"
+```
+
+Burada sistem atlamak yerine o satırda durup hata yapacaktır. Yani sistem önce `telefon` değişkeninin ilk iki karakterini kontrol edecek ve "05" ifadesine eşit mi inceleyecektir. Eğer hata varsa sistem bir hata verecek ve bu hatanın sebebini virgülden sonra gönderdiğimiz değer ne ise (bizim için "Telefon numarası kontrolünde hata var" şeklinde) o şekilde hata döndürecektir. Eğer virgülden sonra ifade girmezsek sistem varsayılan hatayı döndürür.
+
+```py
+tel = "15437727461"
+
+assert tel[0:2] == "05"
+```
+
+Buradaki hata `Assertion Error` olarak çıkacaktır.
+
 ## Düşünelim
 
 1. Neden if ifadesinden sonraki satırı içeri aldık? Almasak ne olurdu?
