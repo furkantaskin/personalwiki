@@ -33,7 +33,7 @@ yeni_liste = ["merhaba dünya", 3.14, 1_000_000, 1, True, 3<5, ["şaka", "yapıy
 
 Normalde string ifadelerde boş değerli bir tanımlamayı görmüştük. `deger = ""` şeklinde bir ifade ile boş bir string açabiliyorduk. Listelerde de aynı mantıkta `listem = []` diyerek boş bir liste oluşturabiliriz. Bazı durumlarda listelerin önden boş olarak tanımlanması önem arz etmektedir.
 
-Normalde [`input()` fonksiyonunu](./6-print) incelerken `split()` metodu görmüştük. Bunun bir string metodu olduğunu ve gelen veriyi parçaladığını söylemiştik. Aslında burada Python string ifadeyi belirli ayırıcı kullanarak bir listeye dönüştürmektedir. Şu örneğe bir bakalım
+Normalde [`input()` fonksiyonunu](./6-print.mdx) incelerken `split()` metodu görmüştük. Bunun bir string metodu olduğunu ve gelen veriyi parçaladığını söylemiştik. Aslında burada Python string ifadeyi belirli ayırıcı kullanarak bir listeye dönüştürmektedir. Şu örneğe bir bakalım
 
 ```py
 stringim = "merhaba dünya"
@@ -42,7 +42,7 @@ listem = stringim.split()
 
 Elimizdeki çıktı `["merhaba", "dünya"]` olacaktır. İşte bu şekilde biz bir metni parçalayabiliyoruz.
 
-String içinde kullandığımız indeksleme, dilimleme (slicing) ve uzunluk bulma gibi işlemleri listelerde de yapabiliyoruz çünkü [stringleri anlatırken](./7-stringler) bu veri tipinin de aslında bir liste gibi davrandığını söylemiştik. Örneğin:
+String içinde kullandığımız indeksleme, dilimleme (slicing) ve uzunluk bulma gibi işlemleri listelerde de yapabiliyoruz çünkü [stringleri anlatırken](./7-stringler.mdx) bu veri tipinin de aslında bir liste gibi davrandığını söylemiştik. Örneğin:
 
 ```py
 listem = ["merhaba", "dünya", "burada", 3.14, True, 1, ["şaka", "gibi"]]
