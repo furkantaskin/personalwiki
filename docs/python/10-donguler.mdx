@@ -6,3 +6,115 @@ description: "Python'da for ve while döngüleri"
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+
+
+# Döngüler
+
+Python içerisinde bazı durumlarda belirli bir döngüde işlem yapmamız gerekebilir. Bunları incelemek bize fayda sağlayacaktır.
+
+Döngüler günlük hayatımızda da karşımıza çıkan durumlardan birisidir. Örnek olarak bir sırada bulunan kişilerin kaçıncı sırada olduğunu hesaplarken kafamızdaki kişi sayacını birer birer artırarak geliriz. Döngülerde de aynı işlemi görürürüz.
+
+Python döngüler için bize While ve for olmak üzere iki döngü vermektedir.
+
+## While Döngüsü
+
+Normalde döngüler belirli bir aralıkta veya sonsuza dek çalışabilir. Bu kısımda for döngüsü belirli şartlar altında döngü yaparken while döngüsü şartı biz verene kadar çalışmaya devam eder. Yani belirli bir şart vermezseniz döngü sonsuza dek çalışacaktır. While kullanımı şu şeklindedir
+
+<Tabs>
+  <TabItem value="for" label="For DÖngüsü" default>
+
+```python
+a = 10
+for i in range(0,a):
+  print(i)
+```
+
+  </TabItem>
+  <TabItem value="while" label="While Döngüsü">
+
+```py
+a = 10
+i = 0
+while i <= a:
+  print(i)
+```
+  </TabItem>
+</Tabs> 
+
+Şimdi elimizde for ve while için iki örnek var. Bakınız while döngüsü şu şekilde çalışır.
+
+- 0 olan i değerini 10 olan a değeri ile karşılaştır
+- Eğer i değeri a değerinden küçük veya eşitse ekrana i değerini yazdır
+- Sonraki adıma geç
+- 0 olan i değerini 10 olan a değeri ile karşılaştır
+- Eğer i değeri a değerinden küçük veya eşitse ekrana i değerini yazdır
+- Sonraki adıma geç
+
+
+Gördüğünüz gibi bu döngü sonsuza dek çalışacaktır. Ancak while döngüsü içinde ya artırma işlemi ya da if-else gibi bir kontrolcü gerekir.
+
+```py
+a = 10
+i = 0
+
+while i <=a:
+  print(i)
+  i+=1
+```
+
+İşte şimdi kontrolde bir sınır oldu. Artık i değeri 10 olunca son kez ekrana i değerini yazdıracak ve i değeri 1 artacak. Sonraki kontrolde i değeri şartı sağlamayacağı için döngü es geçilecektir.
+
+
+## For Döngüsü
+
+For döngüsü while döngüsünden farklı olarak belirli bir aralıkta çalışır. Yani başlangıç ve bitiş değeri bekler. Örnek olarak
+
+```py
+for i in range(0,10):
+  print(i)
+```
+
+Bakın while döngüsünde yaptığımız +=1 ifadesine gerek duymadan bunu for döngüsünde kolayca yaptık. Döngülerde böyle imkanlarımız da mevcuttur.
+
+## continue ve break
+
+Bazı durumlarda bir sonsuz döngü kurmamız gerekebilir. Bu döngüdeki işlemleri de çeşitli şartlarda atlatıp ya da durdurup çeşitli işlemler yapmamız gerekebilir
+
+```py
+a = 10
+i = 1
+while i <=10:
+  print(i)
+  if i == 5:
+    break 
+  i +=1
+```
+
+Burada döngümüz ekrana 5'e kadar yazdıracak ve i değeri 5 olunca döngü duracaktır. Artık gerisini görmeyeceğiz
+
+
+continue döngü esnasında o adımda kendisinden sonraki işlemleri yapmayacaktır. Örneğin
+
+```py
+for i in range(0,10):
+  print(i)
+  if i % 2 == 0:
+    continue
+  print(f"Bu {i}. adım olarak geçer ve ekrandaki sayı çift veya tektir")
+```
+
+Örneğin kullanıcıdan sürekli işlem isteyen bir program düşünelim
+
+```py
+while True:
+  name = input("Adınızı söyleyin: ")
+  print("Bak bunu sürekli görüyorsun")
+  if name == "Furkan":
+    print("Tüm Furkanlar aynı. Hepiniz sevimsizsiniz")
+    continue
+  print(f"Ne kadar güzel ismin var {name}! Bunu sadece seni sevdiğim için görüyorsun <3")
+```
+
+Bakın normalde kullanıcı örnek olarak Ali ismini girince ekrana "Ne kadar güzel ismin var Ali" demeli. Ama programın Furkan ismine karşı garezi var ve bu yüzden morali bozuluyor ve başka işlem yapmıyor.
+
