@@ -1,0 +1,187 @@
+---
+sidebar_position: 9
+custom_edit_url: null
+description: "Python'da listeler ve liste operatörleri"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Listeler
+
+Python kendi içerisinde çeşitli veri yapı türleri tutmaktadır. Bunların en sık kullanılanlarından birisi listelerdir.
+
+:::info VERİ YAPILARI NEDİR?
+
+Veri yapıları, içinde belirli verileri küme halinde tutabilen yapılara denmektedir. Python içinde liste, tuple ve sözlük (dictionary) olmak üzere üç farklı türde veri yapısı vardır. 
+
+:::
+
+Liste, verileri belirli bir sıra altında tutan veri yapısıdır. Alışveriş listesi, öğrenci listesi ve daha birçok liste bu şekilde örneklenebilir. Farkındaysak hepsine liste diyoruz.
+
+Liste tanımlaması aslında çok da farklı değildir. Python bizden burada köşeli parantez içinde bir yazım beklemektedir. Örneğin:
+
+```py
+yeni_liste =  ["merhaba", "dünya"]
+```
+
+Listelerin en güzel yanı stringler içinde yapamadığımız bazı şeylere izin vermesidir. Örneğin string içinde birleşik olarak bir float, boolean veya integer ifadeyi tutamayız. Tutsak bile ayrıştırma işlemi büyük efor istemektedir. Listeler bu kısımda türü fark etmeksizin her türlü veriyi tutmamıza izin vermektedir. Listeler içinde listeler bile tutabiliriz. 
+
+```py
+yeni_liste = ["merhaba dünya", 3.14, 1_000_000, 1, True, 3<5, ["şaka", "yapıyorsun"]]
+```
+
+Normalde string ifadelerde boş değerli bir tanımlamayı görmüştük. `deger = ""` şeklinde bir ifade ile boş bir string açabiliyorduk. Listelerde de aynı mantıkta `listem = []` diyerek boş bir liste oluşturabiliriz. Bazı durumlarda listelerin önden boş olarak tanımlanması önem arz etmektedir.
+
+Normalde [`input()` fonksiyonunu](./6-print) incelerken `split()` metodu görmüştük. Bunun bir string metodu olduğunu ve gelen veriyi parçaladığını söylemiştik. Aslında burada Python string ifadeyi belirli ayırıcı kullanarak bir listeye dönüştürmektedir. Şu örneğe bir bakalım
+
+```py
+stringim = "merhaba dünya"
+listem = stringim.split()
+```
+
+Elimizdeki çıktı `["merhaba", "dünya"]` olacaktır. İşte bu şekilde biz bir metni parçalayabiliyoruz.
+
+String içinde kullandığımız indeksleme, dilimleme (slicing) ve uzunluk bulma gibi işlemleri listelerde de yapabiliyoruz çünkü [stringleri anlatırken](./7-stringler) bu veri tipinin de aslında bir liste gibi davrandığını söylemiştik. Örneğin:
+
+```py
+listem = ["merhaba", "dünya", "burada", 3.14, True, 1, ["şaka", "gibi"]]
+print(len(listem)) # Çıktımız 7 olacaktır
+```
+Bu şekilde bir programın çıktısı 7 olacaktır. Liste içindeki liste de tek bir elemandır aslında. İçteki listenin kaç elemanlı olduğu bizi bağlamaz. Yani buradaki örneğin dedenizin kaç çocuğu olduğunu sormak gibi düşünebilirsiniz. Her ne kadar babanızın ya da annenizin çocuğu olsa da buradaki konu dedenizin kaç çocuğu olduğudur.
+
+Peki biz indekslemeyi tek kümeler için görmüştük. İç içe listelerde nasıl çalışacak? İşte bu kısım da çok basit.
+
+```py
+listem = ["merhaba", "dünya", "burada", 3.14, True, 1, ["şaka", "gibi"]]
+print(listem[6][0]) # "şaka"
+```
+
+Aslında şunu diyoruz:
+
+> Ana listemin altıncı indeksteki elemanına git (yedinci sıradaki) ve bu elemanın sıfırıncı indeksteki (ilk sıradaki) elemanını yazdır
+
+Aslında stringleri bundan dolayı önceden gördük çünkü stringler birçok noktada listeler ile benzer yapılara sahiptir. 
+
+Peki `split()` metodunun bir stringi parçalayıcı bir ifade ile parçaladığını biliyoruz. Bu değer de varsayılan olarak boşluk karakteri. Peki boşluksuz bir ifademiz olsa, örneğin 0'dan 9'a kadar sayı dizisi olsa nasıl parçalayacağız.
+
+```py
+stringim = "0123456789"
+listem = list(stringim)
+```
+
+Artık çıktımız her bir elemanı bir rakam olan bir liste olacaktır. Peki bu arkadaşlar string olarak geldi. Ama listenin sayısal ifadelerden oluşmasını istiyoruz ne yapmamız lazım. İşte burada da `range()` fonksiyonu yetişiyor yardımımıza.
+
+:::info `range()` FONKSİYONU
+
+`range()` fonksiyonu bize verilen aralıkta sayılar üretmeyi sağlar. Burada başlangıç ve bitiş değeri verilir. Bu fonksiyon normalde üç parametre alır: start, stop ve step. 
+
+1. start: Serinin başlayacağı sayıyı belirtir. Varsayılan 0'dır.
+2. stop: Serinin biteceği sayıyı belirtir. Verilmesi gerekir. Seri oluşturulurken bu sayı dahil değildir. Yani stop değeri 10 olursa çıkan sayılar arasında 10 ifadesi olmayacaktır.
+3. step: serinin kaçar kaçar artacağını söyler. Bunu slicing gibi düşünebilir. Örneğin range(0,10,2) demek `0,2,4,6,7,8` ifadelerini çıkarır. 10 burada dahil değildir.
+
+:::
+
+## Liste Metodları
+
+Listeler de kendi içerisinde özel metodlar barındırır. Şimdi bunlara biraz bakalım.
+
+### Listeye Eleman Ekleme
+
+Listelere eleman ekleme aslında birçok yerde kullanılmaktadır. Yeni bir öğrenci geldiğinde, ekibe yeni bir arkadaş katıldığında, telefon rehberinde veya gişelerde sürekli görüyoruz. Her bir durum kendi içinde özel koşullar getirir. Şimdi bu koşullar ile başa çıkma yöntemlerine bakacağız.
+
+#### Listeye Tek Eleman Ekleme (`append()`)
+
+Örneğin elimizde bir kiosk olsun. Biz bu kiosk üzerinden gişe işlemleri için sıra almaktayız. Sisteme bu sıra alan kullanıcının artık bir işlem yapacağını söylemememiz lazım. Bu arkadaş özel bir durumu yoksa sona eklenecektir. İşte bunu `append()` ile yapıyoruz.
+
+```py
+listem = ["furkan", "irem", "metehan"]
+listem.append("yeni arkadaş")
+print(listem) # ["furkan", "irem", "metehan", "yeni arkadaş"]
+```
+
+Arkadaş listeye katılan yeni arkadaş, listenin sonuna gidecektir. Peki ya tek bir kişi değil de çok kişi eklememiz gerekirse? Çünkü `append()` sadece tek bir eleman alır.
+
+#### Listeye Birden Fazla Eleman Ekleme (`extend()`)
+
+Diyelim ki elimizdeki öğrenci listesi kalabalık ve topluca aktarmamız gerekiyor. İşte bu durumda `extend()` kullanırız.
+
+```py
+listem = ["furkan", "irem", "metehan"]
+listem.extend("yeni", "bir", "arkadaş")
+
+print(listem) # furkan, irem, metehan, yeni, bir, arkadaş
+
+listem.extend(range(1,3))
+print(listem) # furkan, irem, metehan, yeni, bir, arkadaş, 1, 2
+
+listem.extend(["deneme", "bir", "iki"])
+print(listem) # furkan, irem, metehan, yeni, bir, arkadaş, 1, 2, deneme, bir, iki
+```
+
+:::caution ÖNEMLİ
+
+Eğer listeye `append(["bir", "iki"])` şeklinde eleman gönderirsek bunu ana listemize bir alt liste olarak ekler. Ancak `extend` buradaki yapıyı umursamaz ve içerideki tüm elemanları ana kümeye ekler.
+
+:::
+
+#### Listenin Belirli Konumuna Eleman Ekleme (`insert()`)
+
+Peki rehberler nasıl çalışır. Eğer b harfinden sonra a ile başlayan birini göndersek de bu kişinin b'den önce olması lazım. İşte Python bunun için de bize bir metod vermiş. Yapılması gereken işlemler çok basit. `insert()` metodu işimizi görüyor.
+
+```py
+listem = ["a", "b", "ç", "d"]
+listem.insert(2, "c")
+print(listem) # a,b,c,ç,d
+```
+Burada `insert()` metodu iki argüman alır. Birisi konumu belirtir, diğeri ise eklenecek elemanı belirtir. `insert()` içinde birden fazla elemanı ancak parantezler içinde gönderebiliriz. Yani `append()` ile aynı mantıkta ve sadece belirli konuma ekleme yaparken kullanılır.
+
+### Listeden Eleman Silme
+
+Listeden eleman silmenin de ekleme gibi birden fazla yöntemi vardır.
+
+#### Son Elemanı Silme (`pop()`)
+
+Diyelim ki elimizdeki listeden son elemanı kaldırmak istiyoruz. `pop()` metodu bize burada yardımcı olacaktır. Ancak bu metod başka bir işe daha yaramaktadır. Çıkarılan elemanı hafızada tutarak yeri gelirse değişkene atamayı ve işlemde kullanmayı sağlar.
+
+```py
+listem = [1,2,3,4]
+a = listem.pop() # 4 elemanı çıkarılır ve a değişkenine atanır
+print(a + 2) # Çıktı 6 olacaktır
+print(listem) # 1,2,3 çıktısı gelecektir
+```
+Bu metod sadece son elemanı silmez. Dilersek burada indeks de gönderebiliriz.
+
+```py
+listem = [1,2,3,4]
+a = listem.pop(2)
+print(a) # 3
+print(listem) # 1,2,4
+```
+
+Burada listemizin ikinci indeksindeki, yani üçüncü sırasındaki elemanı kaldırıp a değişkenine atadık. Artık listemizde o eleman yok ancak bir değişkende hala korunuyor.
+
+
+#### Belirli Bir Değeri Silme (`remove()`)
+
+Bu metod ile listeden gönderilen değerin görüldüğü ilk elemanı sileriz. Eğer aynı değerden birden fazla varsa sadece ilk değer silinir.
+
+:::tip İPUCU
+
+Dilersek slicing ile de birden fazla değişken güncellenebilir.
+
+```py
+listem = [1,2,3,4]
+listem[0:2] = [10,20]
+print(listem) # 10,20,3,4
+```
+
+:::
+
+
+Diğer metodlar için [**burayı ziyaret edebilirsiniz**](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
+
+
+## Döngüler
+
+Python içerisinde bazı durumlarda belirli bir döngüde işlem yapmamız gerekebilir. Bunları incelemek bize fayda sağlayacaktır.
