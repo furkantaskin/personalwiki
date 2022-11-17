@@ -60,6 +60,26 @@ func main() {
 }
 ```
 
+Dilersek tek seferde birden fazla değişken de tanımlayabiliriz. Örneğin isim, yaş ve cinsiyeti barındıran bir sistemimiz olsun.
+
+```go
+package main
+
+import "fmt"
+
+func main(){
+  var(
+    name = "Furkan"
+    age int = 26
+    pi = 3.14
+    dessert= "Muffin"
+  )
+  fmt.Println(name,age,pi,desser)
+}
+```
+
+Böylece tek seferde tüm tiplerimizi tanımlayabiliriz.
+
 Burada aslında JS'ye benzer bir tanımlama görüyoruz. `var` anahtar kelimesi değersiz değişken tanımlamalarında önemli bir rol oynamaktadır.
 
 Burada ilgiyi çeken ifadelerden birisi de `:=` ifadesidir. Bu ifade değişkenin oluşturulup bir değere atanmasını sağlar. Kod içerisinde normalde `var f = "apple"` demek yerine direkt olarak f değerinin bir string değere eşit olduğunu belirttik. Ya da daha uzun bir şekilde `var foo int = 10` yerine `foo := 10` diyebiliriz. Go hem statik hem de dinamik programlamayı desteklediği için değişken türünü kendisi belirleyebilmektedir.
