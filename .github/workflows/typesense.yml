@@ -3,6 +3,7 @@ on: workflow_dispatch
 
 jobs:
   typesense-scrap:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3   # You MUST checkout your repository first!
