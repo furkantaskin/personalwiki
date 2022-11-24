@@ -153,6 +153,29 @@ const config = {
         // Optional
         contextualSearch: true,
       },
+      algolia: {
+      // The application ID provided by Algolia
+      appId: 'WJTOALO3IX',
+
+      // Public API key: it is safe to commit it
+      apiKey: 'b940904dab27a99510a9724326ad6be9',
+
+      indexName: 'personal_wiki',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
+      // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+      externalUrlRegex: 'external\\.com|domain\\.com',
+
+      // Optional: Algolia search parameters
+      searchParameters: {},
+
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: 'search',
+
+      //... other Algolia params
+    },
     }),
 };
 
